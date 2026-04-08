@@ -1,0 +1,804 @@
+{% extends "base.html" %}
+
+{% block title %}Trang chủ - VaxCare{% endblock %}
+
+{% block content %}
+<!-- ============================================================================= -->
+<!--                           HERO SECTION START                                 -->
+<!-- ============================================================================= -->
+<!-- Hero Section with Enhanced Styling and Dynamic Background -->
+<section
+  class="w-full relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-indigo-900 via-purple-900 to-blue-900">
+  <!-- Particle Background Effect -->
+  <div class="absolute inset-0 bg-dot-white/[0.2] pointer-events-none"></div>
+
+  <!-- Animated Gradient Overlay -->
+  <div class="absolute inset-0 bg-gradient-to-r from-purple-600/20 via-blue-500/20 to-indigo-700/20 animate-gradient-x">
+  </div>
+
+  <!-- Floating Geometric Shapes -->
+  <div class="absolute top-0 left-0 w-full h-full opacity-20 pointer-events-none">
+    <div class="absolute top-10 left-20 w-60 h-60 bg-blue-500 rounded-full mix-blend-overlay blur-3xl animate-float">
+    </div>
+    <div
+      class="absolute bottom-20 right-20 w-72 h-72 bg-purple-500 rounded-full mix-blend-overlay blur-3xl animate-float-inverse">
+    </div>
+  </div>
+
+  <!-- Hero Content Container -->
+  <div class="relative z-10 container px-6 md:px-12 lg:px-24">
+    <div class="grid md:grid-cols-2 items-center gap-12">
+      <!-- Text Content -->
+      <div class="space-y-6 text-center md:text-left">
+        <div
+          class="inline-block px-4 py-2 bg-white/10 text-white rounded-full border border-white/20 text-sm tracking-wide">
+          Mới: Quản lý tiêm chủng hỗ trợ AI
+        </div>
+
+        <h1 class="text-5xl md:text-6xl font-extrabold text-transparent bg-clip-text 
+                     bg-gradient-to-r from-blue-200 via-white to-blue-300 
+                     leading-tight tracking-tight">
+          VaxCare
+          <br />
+          <span class="text-3xl md:text-4xl">Hệ thống tiêm chủng thông minh</span>
+        </h1>
+
+        <p class="text-xl text-gray-200 leading-relaxed max-w-xl mx-auto md:mx-0">
+          Cách mạng hóa quản lý tiêm chủng với AI tiên tiến, thông tin cá nhân hóa và theo dõi tiêm chủng kỹ thuật số
+          liền mạch.
+        </p>
+
+        <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 justify-center md:justify-start pt-6">
+          <a href="{{ url_for('login') }}" class="px-8 py-4 bg-white text-indigo-900 rounded-full 
+               font-semibold hover:bg-gray-100 transition transform hover:scale-105 
+               shadow-xl hover:shadow-2xl">
+            Bắt đầu ngay
+          </a>
+          <a href="#features" class="px-8 py-4 bg-transparent border-2 border-white/50 
+               text-white rounded-full font-semibold hover:bg-white/10 
+               transition transform hover:scale-105">
+            Tìm hiểu thêm
+          </a>
+        </div>
+      </div>
+
+      <!-- Illustration/Mockup -->
+      <div class="hidden md:flex justify-center items-center relative">
+        <div class="w-96 h-96 bg-white/10 backdrop-blur-xl rounded-3xl 
+                      border border-white/20 p-6 shadow-2xl 
+                      flex items-center justify-center">
+          <img src="https://i.postimg.cc/wvB2Tt97/9c028a70-f3a6-4dcc-9c15-1fcb83fe34ac.webp" alt="VaxCare Illustration"
+            class="w-full h-full object-cover rounded-3xl animate-float-slow" />
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  @keyframes gradient-x {
+
+    0%,
+    100% {
+      background-position: 0% 50%;
+    }
+
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+
+  @keyframes float {
+
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+
+    50% {
+      transform: translateY(-30px);
+    }
+  }
+
+  .animate-gradient-x {
+    background-size: 200% 200%;
+    animation: gradient-x 15s ease infinite;
+  }
+
+  .animate-float {
+    animation: float 8s ease-in-out infinite;
+  }
+
+  .animate-float-inverse {
+    animation: float 10s ease-in-out infinite reverse;
+  }
+
+  .animate-float-slow {
+    animation: float 12s ease-in-out infinite;
+  }
+
+  .bg-dot-white\/\[0\.2\] {
+    background-image:
+      radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.2) 1px, transparent 0);
+    background-size: 30px 30px;
+  }
+</style>
+<!-- ============================================================================= -->
+<!--                           HERO SECTION END                                   -->
+<!-- ============================================================================= -->
+
+
+
+
+<!-- ============================================================================= -->
+<!--                           FEATURES SECTION START                             -->
+<!-- ============================================================================= -->
+<section id="features" class="py-20 bg-gray-50">
+  <div class="container mx-auto px-4">
+    <!-- Section Heading -->
+    <div class="text-center mb-16">
+      <h2 class="text-4xl font-bold text-gray-800">Tính năng nổi bật</h2>
+      <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
+        VaxCare được thiết kế với sự tiện lợi của bạn. Khám phá nhiều tính năng sáng tạo giúp bạn quản lý hành trình
+        tiêm chủng hiệu quả.
+      </p>
+    </div>
+    <!-- Features Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+      <!-- Feature Card 1: Profile Management -->
+      <div class="bg-white rounded-xl shadow-lg hover:shadow-2xl transition duration-300 p-6">
+        <div class="flex justify-center mb-6">
+          <img src="https://img.icons8.com/fluency/96/000000/user-male-circle.png" alt="Profile Management"
+            class="w-20 h-20">
+        </div>
+        <h3 class="text-2xl font-semibold text-gray-800 text-center mb-2">Quản lý hồ sơ</h3>
+        <p class="text-gray-600 text-center">
+          Tạo, cập nhật và quản lý nhiều hồ sơ người dùng dễ dàng với bảng điều khiển trực quan. Theo dõi lịch sử tiêm
+          chủng và thông tin cá nhân một cách thuận tiện.
+        </p>
+        <ul class="mt-4 text-gray-700 list-disc list-inside">
+          <li>Nhiều hồ sơ</li>
+          <li>Lưu trữ dữ liệu an toàn</li>
+          <li>Chỉnh sửa dễ dàng</li>
+        </ul>
+      </div>
+      <!-- Feature Card 2: Appointment Booking -->
+      <div class="bg-white rounded-xl shadow-lg hover:shadow-2xl transition duration-300 p-6">
+        <div class="flex justify-center mb-6">
+          <img src="https://img.icons8.com/fluency/96/000000/appointment-reminders.png" alt="Appointment Booking"
+            class="w-20 h-20">
+        </div>
+        <h3 class="text-2xl font-semibold text-gray-800 text-center mb-2">Đặt lịch hẹn</h3>
+        <p class="text-gray-600 text-center">
+          Đặt lịch tiêm chủng một cách liền mạch. Xem các khung giờ còn trống, chọn thời gian phù hợp và nhận thông báo
+          ngay lập tức.
+        </p>
+        <ul class="mt-4 text-gray-700 list-disc list-inside">
+          <li>Cập nhật khung giờ theo thời gian thực</li>
+          <li>Đổi lịch dễ dàng</li>
+          <li>Thông báo tức thì</li>
+        </ul>
+      </div>
+      <!-- Feature Card 3: Digital Certificates -->
+      <div class="bg-white rounded-xl shadow-lg hover:shadow-2xl transition duration-300 p-6">
+        <div class="flex justify-center mb-6">
+          <img src="https://img.icons8.com/fluency/96/000000/certificate.png" alt="Digital Certificates"
+            class="w-20 h-20">
+        </div>
+        <h3 class="text-2xl font-semibold text-gray-800 text-center mb-2">Chứng nhận kỹ thuật số</h3>
+        <p class="text-gray-600 text-center">
+          Tạo chứng nhận tiêm chủng kỹ thuật số chính thức với mã QR tích hợp để xác minh nhanh và chia sẻ dễ dàng.
+        </p>
+        <ul class="mt-4 text-gray-700 list-disc list-inside">
+          <li>Định dạng chính thức</li>
+          <li>Xác minh mã QR</li>
+          <li>Tải xuống PDF</li>
+        </ul>
+      </div>
+      <!-- Feature Card 4: AI-Powered Insights -->
+      <div class="bg-white rounded-xl shadow-lg hover:shadow-2xl transition duration-300 p-6">
+        <div class="flex justify-center mb-6">
+          <img src="https://img.icons8.com/fluency/96/000000/artificial-intelligence.png" alt="AI-Powered Insights"
+            class="w-20 h-20">
+        </div>
+        <h3 class="text-2xl font-semibold text-gray-800 text-center mb-2">Phân tích AI thông minh</h3>
+        <p class="text-gray-600 text-center">
+          Tận dụng trí tuệ nhân tạo để nhận đề xuất vắc-xin cá nhân hóa và phân tích dữ liệu thời gian thực để quản lý
+          sức khỏe của bạn.
+        </p>
+        <ul class="mt-4 text-gray-700 list-disc list-inside">
+          <li>Gợi ý cá nhân hóa</li>
+          <li>Quyết định dựa trên dữ liệu</li>
+          <li>Phân tích sức khỏe</li>
+        </ul>
+      </div>
+      <!-- Feature Card 5: Real-Time Notifications -->
+      <div class="bg-white rounded-xl shadow-lg hover:shadow-2xl transition duration-300 p-6">
+        <div class="flex justify-center mb-6">
+          <img src="https://img.icons8.com/fluency/96/000000/appointment-reminders.png" alt="Real-Time Reminders"
+            class="w-20 h-20">
+        </div>
+        <h3 class="text-2xl font-semibold text-gray-800 text-center mb-2">Thông báo thời gian thực</h3>
+        <p class="text-gray-600 text-center">
+          Luôn được thông báo với nhắc nhở về xác nhận lịch hẹn, lịch hẹn sắp tới và thay đổi lịch trình.
+        </p>
+        <ul class="mt-4 text-gray-700 list-disc list-inside">
+          <li>Cảnh báo tức thì</li>
+          <li>Nhắc nhở</li>
+          <li>Xác nhận</li>
+        </ul>
+      </div>
+      <!-- Feature Card 6: Secure Data Management -->
+      <div class="bg-white rounded-xl shadow-lg hover:shadow-2xl transition duration-300 p-6">
+        <div class="flex justify-center mb-6">
+          <img src="https://img.icons8.com/fluency/96/000000/lock-2.png" alt="Secure Data Management" class="w-20 h-20">
+        </div>
+        <h3 class="text-2xl font-semibold text-gray-800 text-center mb-2">Bảo mật dữ liệu</h3>
+        <p class="text-gray-600 text-center">
+          Quyền riêng tư của bạn là ưu tiên hàng đầu. Tất cả dữ liệu được lưu trữ với tiêu chuẩn mã hóa nâng cao và giao
+          thức bảo mật.
+        </p>
+        <ul class="mt-4 text-gray-700 list-disc list-inside">
+          <li>Mã hóa dữ liệu</li>
+          <li>Kiểm toán bảo mật định kỳ</li>
+          <li>Chú trọng quyền riêng tư</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ============================================================================= -->
+<!--                           FEATURES SECTION END                               -->
+<!-- ============================================================================= -->
+
+
+
+
+<!-- ============================================================================= -->
+<!--                           SERVICES SECTION START                             -->
+<!-- ============================================================================= -->
+<section id="services" class="py-20 bg-white">
+  <div class="container mx-auto px-4">
+    <!-- Section Heading -->
+    <div class="text-center mb-16">
+      <h2 class="text-4xl font-bold text-gray-800">Dịch vụ của chúng tôi</h2>
+      <p class="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">
+        Tại VaxCare, chúng tôi cung cấp nhiều dịch vụ được thiết kế để đảm bảo hành trình tiêm chủng của bạn suôn sẻ, an
+        toàn và thân thiện.
+      </p>
+    </div>
+    <!-- Services Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+      <!-- Service Item 1: User Onboarding -->
+      <div class="flex items-center bg-gray-50 rounded-xl shadow-xl p-8 hover:shadow-2xl transition duration-300">
+        <img src="https://img.icons8.com/color/96/000000/add-user-male.png" alt="User Onboarding"
+          class="w-16 h-16 mr-6">
+        <div>
+          <h3 class="text-2xl font-semibold text-gray-800 mb-2">Đăng ký người dùng</h3>
+          <p class="text-gray-600">
+            Bắt đầu nhanh chóng với quy trình đăng ký dễ dàng cho phép tạo nhiều hồ sơ cho các thành viên trong gia
+            đình.
+          </p>
+          <ul class="mt-3 text-gray-700 list-disc list-inside">
+            <li>Quy trình đăng ký đơn giản</li>
+            <li>Nhiều hồ sơ gia đình</li>
+            <li>Quản lý tài khoản an toàn</li>
+          </ul>
+        </div>
+      </div>
+      <!-- Service Item 2: Schedule Management -->
+      <div class="flex items-center bg-gray-50 rounded-xl shadow-xl p-8 hover:shadow-2xl transition duration-300">
+        <img src="https://img.icons8.com/color/96/000000/appointment-reminders--v2.png" alt="Schedule Management"
+          class="w-16 h-16 mr-6">
+        <div>
+          <h3 class="text-2xl font-semibold text-gray-800 mb-2">Quản lý lịch hẹn</h3>
+          <p class="text-gray-600">
+            Quản lý lịch hẹn hiệu quả. Đặt, đổi hoặc hủy lịch hẹn chỉ với vài cú nhấp chuột.
+          </p>
+          <ul class="mt-3 text-gray-700 list-disc list-inside">
+            <li>Đổi lịch dễ dàng</li>
+            <li>Khả dụng thời gian thực</li>
+            <li>Nhắc nhở tự động</li>
+          </ul>
+        </div>
+      </div>
+      <!-- Service Item 3: QR Verification -->
+      <div class="flex items-center bg-gray-50 rounded-xl shadow-xl p-8 hover:shadow-2xl transition duration-300">
+        <img src="https://img.icons8.com/color/96/000000/qr-code.png" alt="QR Verification" class="w-16 h-16 mr-6">
+        <div>
+          <h3 class="text-2xl font-semibold text-gray-800 mb-2">Xác minh mã QR</h3>
+          <p class="text-gray-600">
+            Xác minh chứng nhận tiêm chủng an toàn với hệ thống mã QR tích hợp đảm bảo tính xác thực.
+          </p>
+          <ul class="mt-3 text-gray-700 list-disc list-inside">
+            <li>Xác minh tức thì</li>
+            <li>Mã QR chính thức</li>
+            <li>Tải xuống an toàn</li>
+          </ul>
+        </div>
+      </div>
+      <!-- Service Item 4: Customizable Options -->
+      <div class="flex items-center bg-gray-50 rounded-xl shadow-xl p-8 hover:shadow-2xl transition duration-300">
+        <img src="https://img.icons8.com/color/96/000000/settings.png" alt="Customizable Options"
+          class="w-16 h-16 mr-6">
+        <div>
+          <h3 class="text-2xl font-semibold text-gray-800 mb-2">Tùy chỉnh linh hoạt</h3>
+          <p class="text-gray-600">
+            Cá nhân hóa trải nghiệm tiêm chủng bằng cách tùy chỉnh tùy chọn lịch hẹn và cài đặt hồ sơ.
+          </p>
+          <ul class="mt-3 text-gray-700 list-disc list-inside">
+            <li>Cài đặt linh hoạt</li>
+            <li>Cảnh báo tùy chỉnh</li>
+            <li>Bảng điều khiển cá nhân</li>
+          </ul>
+        </div>
+      </div>
+      <!-- Service Item 5: AI-Powered Analytics -->
+      <div class="flex items-center bg-gray-50 rounded-xl shadow-xl p-8 hover:shadow-2xl transition duration-300">
+        <img src="https://img.icons8.com/fluency/96/000000/artificial-intelligence.png" alt="AI-Powered Analytics"
+          class="w-16 h-16 mr-6">
+        <div>
+          <h3 class="text-2xl font-semibold text-gray-800 mb-2">Phân tích dữ liệu AI</h3>
+          <p class="text-gray-600">
+            Hưởng lợi từ phân tích nâng cao được hỗ trợ bởi AI để tối ưu hóa lịch tiêm chủng và quyết định sức khỏe.
+          </p>
+          <ul class="mt-3 text-gray-700 list-disc list-inside">
+            <li>Phản hồi sâu sắc</li>
+            <li>Gợi ý dựa trên dữ liệu</li>
+            <li>Phân tích thời gian thực</li>
+          </ul>
+        </div>
+      </div>
+      <!-- Service Item 6: AI Chat Support -->
+      <div class="flex items-center bg-gray-50 rounded-xl shadow-xl p-8 hover:shadow-2xl transition duration-300">
+        <img src="https://img.icons8.com/fluency/96/000000/chat.png" alt="AI Chat Support" class="w-16 h-16 mr-6">
+        <div>
+          <h3 class="text-2xl font-semibold text-gray-800 mb-2">Hỗ trợ AI Chat</h3>
+          <p class="text-gray-600">
+            Nhận hỗ trợ ngay lập tức từ AI chat cho mọi thắc mắc liên quan đến quy trình tiêm chủng của bạn.
+          </p>
+          <ul class="mt-3 text-gray-700 list-disc list-inside">
+            <li>Hỗ trợ 24/7</li>
+            <li>Phản hồi tức thì</li>
+            <li>Giao diện thân thiện</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ============================================================================= -->
+<!--                           SERVICES SECTION END                               -->
+<!-- ============================================================================= -->
+
+
+
+
+<!-- ============================================================================= -->
+<!--                           FAQ SECTION START                                  -->
+<!-- ============================================================================= -->
+<section id="faq" class="py-20 bg-gray-100">
+  <div class="container mx-auto px-4">
+    <!-- FAQ Section Header -->
+    <div class="text-center mb-16">
+      <h2 class="text-4xl font-bold text-gray-800">Câu hỏi thường gặp</h2>
+      <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
+        Dưới đây là một số câu hỏi thường gặp về VaxCare, tính năng và dịch vụ của chúng tôi. Nhấp vào câu hỏi để xem
+        câu trả lời.
+      </p>
+    </div>
+    <!-- FAQ Accordion Container -->
+    <div class="space-y-6">
+      <!-- FAQ Item 1 -->
+      <div class="border border-gray-300 rounded-lg overflow-hidden">
+        <button
+          class="w-full text-left px-6 py-4 bg-white focus:outline-none focus:ring-2 focus:ring-blue-600 faq-trigger"
+          data-target="#faq1">
+          <span class="font-medium text-gray-800">VaxCare là gì?</span>
+        </button>
+        <div id="faq1" class="px-6 py-4 bg-gray-50 faq-content hidden">
+          <p class="text-gray-700 leading-relaxed">
+            VaxCare là hệ thống quản lý tiêm chủng toàn diện cho phép người dùng tạo và quản lý hồ sơ, đặt và đổi lịch
+            hẹn, tạo chứng nhận kỹ thuật số an toàn và nhận thông tin phân tích từ AI để tối ưu hóa hành trình tiêm
+            chủng.
+          </p>
+        </div>
+      </div>
+      <!-- FAQ Item 2 -->
+      <div class="border border-gray-300 rounded-lg overflow-hidden">
+        <button
+          class="w-full text-left px-6 py-4 bg-white focus:outline-none focus:ring-2 focus:ring-blue-600 faq-trigger"
+          data-target="#faq2">
+          <span class="font-medium text-gray-800">Làm thế nào để đặt lịch hẹn?</span>
+        </button>
+        <div id="faq2" class="px-6 py-4 bg-gray-50 faq-content hidden">
+          <p class="text-gray-700 leading-relaxed">
+            Để đặt lịch hẹn, hãy đăng nhập vào tài khoản, chọn hồ sơ phù hợp và chọn từ các lịch và khung giờ có sẵn.
+            Sau khi xác nhận, lịch hẹn sẽ được thêm vào bảng điều khiển của bạn.
+          </p>
+        </div>
+      </div>
+      <!-- FAQ Item 3 -->
+      <div class="border border-gray-300 rounded-lg overflow-hidden">
+        <button
+          class="w-full text-left px-6 py-4 bg-white focus:outline-none focus:ring-2 focus:ring-blue-600 faq-trigger"
+          data-target="#faq3">
+          <span class="font-medium text-gray-800">Tôi có thể đổi lịch hoặc hủy lịch hẹn không?</span>
+        </button>
+        <div id="faq3" class="px-6 py-4 bg-gray-50 faq-content hidden">
+          <p class="text-gray-700 leading-relaxed">
+            Có, bạn có thể đổi lịch hoặc hủy lịch hẹn qua bảng điều khiển, miễn là ngày hẹn chưa qua. Chỉ cần chọn lịch
+            hẹn muốn thay đổi và làm theo hướng dẫn.
+          </p>
+        </div>
+      </div>
+      <!-- FAQ Item 4 -->
+      <div class="border border-gray-300 rounded-lg overflow-hidden">
+        <button
+          class="w-full text-left px-6 py-4 bg-white focus:outline-none focus:ring-2 focus:ring-blue-600 faq-trigger"
+          data-target="#faq4">
+          <span class="font-medium text-gray-800">Chứng nhận tiêm chủng kỹ thuật số là gì?</span>
+        </button>
+        <div id="faq4" class="px-6 py-4 bg-gray-50 faq-content hidden">
+          <p class="text-gray-700 leading-relaxed">
+            Chứng nhận tiêm chủng kỹ thuật số là tài liệu chính thức do VaxCare tạo ra, bao gồm tất cả thông tin tiêm
+            chủng cùng mã QR để xác minh. Chúng phục vụ như bằng chứng miễn dịch.
+          </p>
+        </div>
+      </div>
+      <!-- FAQ Item 5 -->
+      <div class="border border-gray-300 rounded-lg overflow-hidden">
+        <button
+          class="w-full text-left px-6 py-4 bg-white focus:outline-none focus:ring-2 focus:ring-blue-600 faq-trigger"
+          data-target="#faq5">
+          <span class="font-medium text-gray-800">Dữ liệu của tôi trên VaxCare có an toàn không?</span>
+        </button>
+        <div id="faq5" class="px-6 py-4 bg-gray-50 faq-content hidden">
+          <p class="text-gray-700 leading-relaxed">
+            Bảo mật là ưu tiên hàng đầu của chúng tôi. Tất cả dữ liệu người dùng được mã hóa và lưu trữ bằng giao thức
+            bảo mật nâng cao. Chúng tôi cũng thực hiện kiểm toán bảo mật định kỳ để đảm bảo thông tin của bạn luôn an
+            toàn.
+          </p>
+        </div>
+      </div>
+      <!-- FAQ Item 6 -->
+      <div class="border border-gray-300 rounded-lg overflow-hidden">
+        <button
+          class="w-full text-left px-6 py-4 bg-white focus:outline-none focus:ring-2 focus:ring-blue-600 faq-trigger"
+          data-target="#faq6">
+          <span class="font-medium text-gray-800">VaxCare cung cấp những tính năng AI nào?</span>
+        </button>
+        <div id="faq6" class="px-6 py-4 bg-gray-50 faq-content hidden">
+          <p class="text-gray-700 leading-relaxed">
+            Các tính năng AI bao gồm đề xuất vắc-xin cá nhân hóa, phân tích dự đoán để lên lịch tối ưu và thông tin dựa
+            trên dữ liệu giúp bạn đưa ra quyết định sức khỏe sáng suốt.
+          </p>
+        </div>
+      </div>
+      <!-- FAQ Item 7 -->
+      <div class="border border-gray-300 rounded-lg overflow-hidden">
+        <button
+          class="w-full text-left px-6 py-4 bg-white focus:outline-none focus:ring-2 focus:ring-blue-600 faq-trigger"
+          data-target="#faq7">
+          <span class="font-medium text-gray-800">VaxCare có sử dụng được trên thiết bị di động không?</span>
+        </button>
+        <div id="faq7" class="px-6 py-4 bg-gray-50 faq-content hidden">
+          <p class="text-gray-700 leading-relaxed">
+            Hoàn toàn có thể. Thiết kế responsive của chúng tôi đảm bảo VaxCare hoàn toàn có thể truy cập và dễ sử dụng
+            trên điện thoại, máy tính bảng và máy tính để bàn.
+          </p>
+        </div>
+      </div>
+      <!-- FAQ Item 8 -->
+      <div class="border border-gray-300 rounded-lg overflow-hidden">
+        <button
+          class="w-full text-left px-6 py-4 bg-white focus:outline-none focus:ring-2 focus:ring-blue-600 faq-trigger"
+          data-target="#faq8">
+          <span class="font-medium text-gray-800">Làm thế nào để liên hệ hỗ trợ khi gặp vấn đề?</span>
+        </button>
+        <div id="faq8" class="px-6 py-4 bg-gray-50 faq-content hidden">
+          <p class="text-gray-700 leading-relaxed">
+            Với mọi vấn đề hoặc thắc mắc, vui lòng tham khảo phần Trợ giúp trên bảng điều khiển. Nhóm hỗ trợ, bao gồm AI
+            chat, luôn sẵn sàng hỗ trợ bạn 24/7.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ============================================================================= -->
+<!--                           FAQ SECTION END                                    -->
+<!-- ============================================================================= -->
+
+
+
+
+
+
+
+
+<!-- ============================================================================= -->
+<!--                           NEWS & UPDATES SECTION START                       -->
+<!-- ============================================================================= -->
+<section id="news" class="py-20 bg-white">
+  <div class="container mx-auto px-4">
+    <!-- Section Heading -->
+    <div class="text-center mb-16">
+      <h2 class="text-4xl font-bold text-gray-800">Tin tức & Cập nhật</h2>
+      <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
+        Cập nhật thông tin mới nhất về tính năng và tin tức liên quan đến VaxCare.
+      </p>
+    </div>
+    <!-- News Cards Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+      <!-- News Card 1 -->
+      <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition duration-300">
+        <img src="https://i.postimg.cc/2y811N6s/93a8989f-6964-4f05-ab47-b6a2504cb62d.webp" alt="News 1"
+          class="w-full h-64 object-cover">
+        <div class="p-8">
+          <h3 class="text-2xl font-semibold text-gray-800 mb-4">VaxCare Ra Mắt Tính Năng AI Mới</h3>
+          <p class="text-gray-600 mb-6">
+            Chúng tôi vui mừng thông báo tích hợp chatbot AI tiên tiến vào VaxCare. Các tính năng mới này sẽ giúp bạn
+            đưa ra quyết định dựa trên dữ liệu về lịch tiêm chủng.
+          </p>
+          <a href="#"
+            class="inline-block px-6 py-3 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition duration-300">
+            Đọc thêm
+          </a>
+        </div>
+      </div>
+      <!-- News Card 2 -->
+      <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition duration-300">
+        <img
+          src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80"
+          alt="News 2" class="w-full h-64 object-cover">
+        <div class="p-8">
+          <h3 class="text-2xl font-semibold text-gray-800 mb-4">Mở Rộng Trung Tâm Tiêm Chủng</h3>
+          <p class="text-gray-600 mb-6">
+            Trong nỗ lực liên tục để tiêm chủng dễ tiếp cận hơn, VaxCare đã hợp tác với thêm nhiều trung tâm tiêm chủng.
+            Tìm trung tâm gần bạn và đặt lịch hẹn ngay hôm nay.
+          </p>
+          <a href="#"
+            class="inline-block px-6 py-3 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition duration-300">
+            Đọc thêm
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ============================================================================= -->
+<!--                           NEWS & UPDATES SECTION END                         -->
+<!-- ============================================================================= -->
+
+<!-- ============================================================================= -->
+<!--                           CREDITS SECTION START                              -->
+<!-- ============================================================================= -->
+
+<section class="relative py-20 bg-gradient-to-br from-indigo-900 via-purple-900 to-blue-900 overflow-hidden">
+  <!-- Animated Background Elements -->
+  <div class="absolute inset-0 bg-dot-white/[0.05] pointer-events-none"></div>
+  <div class="absolute top-0 left-0 w-72 h-72 bg-purple-500/20 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2">
+  </div>
+  <div class="absolute bottom-0 right-0 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl translate-x-1/2 translate-y-1/2">
+  </div>
+
+  <div class="relative z-10 container mx-auto px-4">
+    <!-- Section Header -->
+    <div class="text-center mb-16">
+      <div
+        class="inline-block mb-4 px-6 py-2 bg-white/10 text-white rounded-full border border-white/20 text-sm tracking-wide">
+        Dự án học thuật
+      </div>
+      <h2
+        class="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-300 via-white to-purple-300 leading-tight mb-4">
+        Thực hiện dự án & Lời cảm ơn
+      </h2>
+      <p class="text-gray-300 max-w-2xl mx-auto text-lg">
+        Được phát triển như một dự án Hệ quản trị cơ sở dữ liệu (DBMS) bởi các thành viên nhóm dưới đây.
+      </p>
+    </div>
+
+    <!-- Authors Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto mb-12">
+      <!-- Author Card 1 -->
+      <div
+        class="group relative bg-white/5 backdrop-blur-xl rounded-2xl p-8 border border-white/10 hover:border-white/20 transition-all duration-300 hover:-translate-y-2 shadow-2xl shadow-black/20">
+        <div
+          class="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl">
+        </div>
+        <div class="relative z-10">
+          <div class="w-24 h-24 mb-6 rounded-full bg-gradient-to-br from-blue-400 to-purple-500 p-1 mx-auto">
+            <div class="bg-gray-900 rounded-full p-2 w-full h-full flex items-center justify-center">
+              <span
+                class="text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">TM</span>
+            </div>
+          </div>
+          <h3 class="text-2xl font-bold text-white mb-2 text-center">Lưu Tuấn Minh B23DCAT195</h3>
+          <div class="flex justify-center space-x-4 mb-4">
+            <a href="#" class="text-blue-400 hover:text-white transition-colors">
+              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M12 0C5.373 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.6.113.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z" />
+              </svg>
+            </a>
+            <a href="mailto:MinhLT.B23AT195@stu.ptit.edu.vn" class="text-purple-400 hover:text-white transition-colors">
+              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Author Card 2 -->
+      <div
+        class="group relative bg-white/5 backdrop-blur-xl rounded-2xl p-8 border border-white/10 hover:border-white/20 transition-all duration-300 hover:-translate-y-2 shadow-2xl shadow-black/20">
+        <div
+          class="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-pink-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl">
+        </div>
+        <div class="relative z-10">
+          <div class="w-24 h-24 mb-6 rounded-full bg-gradient-to-br from-purple-400 to-pink-500 p-1 mx-auto">
+            <div class="bg-gray-900 rounded-full p-2 w-full h-full flex items-center justify-center">
+              <span
+                class="text-2xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">ĐQ</span>
+            </div>
+          </div>
+          <h3 class="text-2xl font-bold text-white mb-2 text-center">Nguyễn Lê Đăng Quang B23DCAT250</h3>
+          <div class="flex justify-center space-x-4 mb-4">
+            <a href="#" class="text-pink-400 hover:text-white transition-colors">
+              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+              </svg>
+            </a>
+            <a href="mailto:QuangNLD.B23AT250@stu.ptit.edu.vn"
+              class="text-purple-400 hover:text-white transition-colors">
+              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Author Card 3 -->
+      <div
+        class="group relative bg-white/5 backdrop-blur-xl rounded-2xl p-8 border border-white/10 hover:border-white/20 transition-all duration-300 hover:-translate-y-2 shadow-2xl shadow-black/20">
+        <div
+          class="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-cyan-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl">
+        </div>
+        <div class="relative z-10">
+          <div class="w-24 h-24 mb-6 rounded-full bg-gradient-to-br from-blue-400 to-cyan-500 p-1 mx-auto">
+            <div class="bg-gray-900 rounded-full p-2 w-full h-full flex items-center justify-center">
+              <span
+                class="text-2xl font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">HS</span>
+            </div>
+          </div>
+          <h3 class="text-2xl font-bold text-white mb-2 text-center">Lê Hồng Sơn B23DCAT260</h3>
+          <div class="flex justify-center space-x-4 mb-4">
+            <a href="#" class="text-cyan-400 hover:text-white transition-colors">
+              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+              </svg>
+            </a>
+            <a href="mailto:SonLH.B23AT260@stu.ptit.edu.vn" class="text-blue-400 hover:text-white transition-colors">
+              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project Disclaimer -->
+    <div class="text-center border-t border-white/10 pt-8 max-w-3xl mx-auto">
+      <p class="text-base text-white mb-2">
+        🚨 Tuyên bố miễn trách: Dự án mô phỏng này chỉ được tạo ra cho mục đích học thuật.
+      </p>
+      <p class="text-sm text-white">
+        Tất cả dữ liệu hiển thị là hư cấu và không dành cho mục đích y tế thực tế.<br>
+      </p>
+    </div>
+</section>
+<!-- ============================================================================= -->
+<!--                           CREDITS SECTION END                                -->
+<!-- ============================================================================= -->
+
+
+<!-- ============================================================================= -->
+<!--                           FOOTER SECTION START                               -->
+<!-- ============================================================================= -->
+<footer class="bg-gray-900 text-gray-300 py-12">
+  <div class="container mx-auto px-4">
+    <!-- Footer Top -->
+    <div class="flex flex-col md:flex-row justify-between items-center">
+      <div class="mb-6 md:mb-0">
+        <h3 class="text-3xl font-bold text-white">VaxCare</h3>
+        <p class="mt-2 text-gray-400">
+          Người đồng hành của bạn trong quản lý tiêm chủng.
+        </p>
+      </div>
+      <div>
+        <ul class="flex flex-wrap justify-center space-x-6">
+          <li><a href="#hero" class="hover:text-white transition">Trang chủ</a></li>
+          <li><a href="#features" class="hover:text-white transition">Tính năng</a></li>
+          <li><a href="#services" class="hover:text-white transition">Dịch vụ</a></li>
+          <li><a href="#faq" class="hover:text-white transition">FAQ</a></li>
+          <li><a href="#news" class="hover:text-white transition">Tin tức</a></li>
+        </ul>
+      </div>
+    </div>
+    <!-- Footer Bottom -->
+    <div class="mt-8 border-t border-gray-700 pt-6 text-center">
+      <p class="text-gray-500 mt-2">Đây chỉ là dự án mô phỏng DBMS.</p>
+      <p class="text-gray-500 mt-2">Không dành cho mục đích y tế thực tế. Chỉ để trình diễn.</p>
+    </div>
+  </div>
+</footer>
+<!-- ============================================================================= -->
+<!--                           FOOTER SECTION END                                 -->
+<!-- ============================================================================= -->
+
+
+
+
+<!-- ============================================================================= -->
+<!--                           SCRIPTS & INTERACTIVITY                           -->
+<!-- ============================================================================= -->
+<script>
+  // Smooth scroll for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      const targetID = this.getAttribute('href').slice(1);
+      const targetElement = document.getElementById(targetID);
+      if (targetElement) {
+        window.scroll({
+          top: targetElement.offsetTop - 70,
+          behavior: 'smooth'
+        });
+      }
+    });
+  });
+
+  // FAQ Accordion functionality
+  document.addEventListener('DOMContentLoaded', function () {
+    const faqTriggers = document.querySelectorAll('.faq-trigger');
+    faqTriggers.forEach(trigger => {
+      trigger.addEventListener('click', function () {
+        const targetSelector = this.getAttribute('data-target');
+        const faqContent = document.querySelector(targetSelector);
+        if (faqContent.classList.contains('hidden')) {
+          faqContent.classList.remove('hidden');
+        } else {
+          faqContent.classList.add('hidden');
+        }
+      });
+    });
+  });
+
+  // Initialize AOS animations if available
+  if (typeof AOS !== 'undefined') {
+    AOS.init({
+      duration: 1000,
+      once: true
+    });
+  }
+</script>
+<!-- ============================================================================= -->
+<!--                           END OF SCRIPTS & INTERACTIVITY                    -->
+<!-- ============================================================================= -->
+
+
+
+<!-- ============================================================================= -->
+<!--                           END OF HOME PAGE TEMPLATE                        -->
+<!-- ============================================================================= -->
+{% endblock %}

@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+
+{% block title %}Chỉnh sửa vắc-xin - VaxCare{% endblock %}
+
+{% block content %}
+<div class="max-w-3xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+        <div class="px-6 py-4 bg-gray-50 border-b border-gray-200">
+            <h2 class="text-lg font-medium text-gray-900">Chỉnh sửa vắc-xin</h2>
+        </div>
+        <form method="POST" id="edit-vaccine-form" class="p-6 space-y-4">
+            <div>
+                <label for="name" class="block text-sm font-medium text-gray-700">Tên vắc-xin</label>
+                <input type="text" name="name" id="name" value="{{ vaccine.name }}" required
+                       class="mt-1 p-2 w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+            </div>
+            <div>
+                <label for="description" class="block text-sm font-medium text-gray-700">Mô tả</label>
+                <textarea name="description" id="description" rows="3" required
+                          class="mt-1 p-2 w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">{{ vaccine.description }}</textarea>
+            </div>
+            <div>
+                <label for="display_min_age" class="block text-sm font-medium text-gray-700">Tuổi tối thiểu</label>
+                <div class="flex mt-1 shadow-sm rounded-md">
+                    <input type="number" id="display_min_age" required
+                           class="flex-1 min-w-0 block w-full px-3 py-2 rounded-l-md border border-gray-300 focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                    <select id="min_age_unit"
+                            class="inline-flex items-center px-3 rounded-r-md border border-l-0 border-gray-300 bg-gray-50 text-gray-500 sm:text-sm">
+                        <option value="1">Tuần</option>
+                        <option value="4">Tháng</option>
+                        <option value="52">Tuổi</option>
+                    </select>
+                </div>
+                <input type="hidden" name="min_age" id="min_age" value="{{ vaccine.min_age }}">
+            </div>
+            <div>
+                <label for="display_max_age" class="block text-sm font-medium text-gray-700">Tuổi tối đa</label>
+                <div class="flex mt-1 shadow-sm rounded-md">
+                    <input type="number" id="display_max_age" required
+                           class="flex-1 min-w-0 block w-full px-3 py-2 rounded-l-md border border-gray-300 focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                    <select id="max_age_unit"
+                            class="inline-flex items-center px-3 rounded-r-md border border-l-0 border-gray-300 bg-gray-50 text-gray-500 sm:text-sm">
+                        <option value="1">Tuần</option>
+                        <option value="4">Tháng</option>
+                        <option value="52">Tuổi</option>
+                    </select>
+                </div>
+                <input type="hidden" name="max_age" id="max_age" value="{{ vaccine.max_age }}">
+            </div>
+            <div class="flex justify-end space-x-4">
+                <a href="{{ url_for('manage_vaccines') }}" class="px-4 py-2 border border-gray-300 rounded-md text-gray-700 bg-white hover:bg-gray-50">Hủy</a>
+                <button type="submit" class="px-4 py-2 border border-transparent text-white bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                    Lưu thay đổi
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    function parseAge(weeks, displayId, unitId) {
+        if (weeks >= 52 && weeks % 52 === 0) {
+            document.getElementById(displayId).value = weeks / 52;
+            document.getElementById(unitId).value = "52";
+        } else if (weeks >= 4 && weeks % 4 === 0) {
+            document.getElementById(displayId).value = weeks / 4;
+            document.getElementById(unitId).value = "4";
+        } else {
+            document.getElementById(displayId).value = weeks;
+            document.getElementById(unitId).value = "1";
+        }
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+        var minWeeks = parseInt(document.getElementById('min_age').value, 10);
+        parseAge(minWeeks, 'display_min_age', 'min_age_unit');
+
+        var maxWeeks = parseInt(document.getElementById('max_age').value, 10);
+        parseAge(maxWeeks, 'display_max_age', 'max_age_unit');
+    });
+
+    document.getElementById('edit-vaccine-form').addEventListener('submit', function(e) {
+        var minAge = document.getElementById('display_min_age').value;
+        var minAgeUnit = document.getElementById('min_age_unit').value;
+        document.getElementById('min_age').value = parseInt(minAge || 0, 10) * parseInt(minAgeUnit || 1, 10);
+
+        var maxAge = document.getElementById('display_max_age').value;
+        var maxAgeUnit = document.getElementById('max_age_unit').value;
+        document.getElementById('max_age').value = parseInt(maxAge || 0, 10) * parseInt(maxAgeUnit || 1, 10);
+    });
+</script>
+{% endblock %}

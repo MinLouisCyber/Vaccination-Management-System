@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block title %}Tạo hồ sơ - VaxCare{% endblock %}
+
+{% block content %}
+<div class="max-w-3xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+        <div class="px-6 py-4 bg-gray-50 border-b border-gray-200">
+            <h2 class="text-lg font-medium text-gray-900">Tạo hồ sơ mới</h2>
+            <p class="mt-1 text-sm text-gray-600">Hoàn thành biểu mẫu để thêm hồ sơ mới.</p>
+        </div>
+        <form method="POST" action="{{ url_for('create_profile') }}" class="p-6 space-y-4">
+            <div>
+                <label for="fname" class="block text-sm font-medium text-gray-700">Tên</label>
+                <input type="text" name="fname" id="fname" required
+                    class="mt-1 p-2 w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+            </div>
+            <div>
+                <label for="mname" class="block text-sm font-medium text-gray-700">Tên đệm (Tùy chọn)</label>
+                <input type="text" name="mname" id="mname"
+                    class="mt-1 p-2 w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+            </div>
+            <div>
+                <label for="lname" class="block text-sm font-medium text-gray-700">Họ</label>
+                <input type="text" name="lname" id="lname" required
+                    class="mt-1 p-2 w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+            </div>
+            <div>
+                <label for="age" class="block text-sm font-medium text-gray-700">Tuổi</label>
+                <input type="number" name="age" id="age" required min="0" max="120"
+                    class="mt-1 p-2 w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+            </div>
+            <div>
+                <label for="gender" class="block text-sm font-medium text-gray-700">Giới tính</label>
+                <select name="gender" id="gender" required
+                    class="mt-1 p-2 w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                    <option value="">Chọn giới tính</option>
+                    <option value="Nam">Nam</option>
+                    <option value="Nữ">Nữ</option>
+                    <option value="Khác">Khác</option>
+                </select>
+            </div>
+            <div class="flex justify-end space-x-4">
+                <a href="{{ url_for('dashboard') }}"
+                    class="px-4 py-2 border border-gray-300 rounded-md text-gray-700 bg-white hover:bg-gray-50">Hủy</a>
+                <button type="submit"
+                    class="px-4 py-2 border border-transparent text-white bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                    Tạo hồ sơ
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
