@@ -80,7 +80,7 @@ A comprehensive web-based vaccination management system built with Flask, allowi
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/dattaaaa/vaxcare.git
+git clone <repository-url>
 cd vaxcare
 ```
 
@@ -127,12 +127,9 @@ vaxcare/
 |   .env
 |   .gitignore
 |   app.py
-|   Create_tables.sql
 |   Entity-Relationship(ER)-diagram.png
 |   guincorn_config.py
 |   LICENSE
-|   Populate_all.sql
-|   project_structure.txt
 |   README.md
 |   Relational_Schema.png
 |   requirements.txt
