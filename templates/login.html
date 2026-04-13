@@ -1,6 +1,6 @@
-{% extends "base.html" %}
+﻿{% extends "base.html" %}
 
-{% block title %}Đăng nhập - VaxCare{% endblock %}
+{% block title %}Đăng nhập - Vinavacci{% endblock %}
 
 {% block content %}
 <div class="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
@@ -19,7 +19,7 @@
             {% endif %}
         {% endwith %}
 
-        <form class="mt-6 space-y-4" method="POST" action="{{ url_for('login') }}">
+        <form class="mt-6 space-y-4" method="POST" action="{{ url_for('auth.login') }}">
             <div>
                 <label for="email" class="block text-sm font-medium text-gray-700">Địa chỉ email</label>
                 <input type="email" name="email" id="email" required
@@ -47,7 +47,7 @@
             </div>
         </form>
         <p class="mt-4 text-center text-sm text-gray-600">Chưa có tài khoản?
-            <a href="{{ url_for('register') }}" class="text-blue-600 hover:underline">Đăng ký tại đây</a>
+            <a href="{{ url_for('auth.register') }}" class="text-blue-600 hover:underline">Đăng ký tại đây</a>
         </p>
     </div>
 </div>

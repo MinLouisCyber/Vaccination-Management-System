@@ -1,6 +1,6 @@
-{% extends "base.html" %}
+﻿{% extends "base.html" %}
 
-{% block title %}Quản lý vắc-xin - VaxCare{% endblock %}
+{% block title %}Quản lý vắc-xin - Vinavacci{% endblock %}
 
 {% macro format_age(weeks) %}
   {% if weeks >= 52 and weeks % 52 == 0 %}
@@ -13,6 +13,7 @@
 {% endmacro %}
 
 {% block content %}
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
 <div class="space-y-6">
     <!-- Header -->
     <div class="bg-gradient-to-r from-blue-600 to-blue-800 rounded-lg shadow-lg p-6 flex justify-between items-center">
@@ -92,10 +93,10 @@
                         <td class="px-6 py-4">{{ vaccine.description }}</td>
                         <td class="px-6 py-4">{{ format_age(vaccine.min_age) }} - {{ format_age(vaccine.max_age) }}</td>
                         <td class="px-6 py-4 flex space-x-2">
-                            <a href="{{ url_for('edit_vaccine', vaccine_id=vaccine.vaccine_id) }}" class="text-blue-600 hover:text-blue-800">
+                            <a href="{{ url_for('admin.edit_vaccine', vaccine_id=vaccine.vaccine_id) }}" class="text-blue-600 hover:text-blue-800">
                                 <i class="fas fa-edit"></i>
                             </a>
-                            <form method="POST" action="{{ url_for('delete_vaccine', vaccine_id=vaccine.vaccine_id) }}" onsubmit="return confirm('Bạn có chắc muốn xóa vắc-xin này không?')">
+                            <form method="POST" action="{{ url_for('admin.delete_vaccine', vaccine_id=vaccine.vaccine_id) }}" onsubmit="return confirm('Bạn có chắc muốn xóa vắc-xin này không?')">
                                 <button type="submit" class="text-red-600 hover:text-red-800">
                                     <i class="fas fa-trash"></i>
                                 </button>
@@ -121,4 +122,5 @@
         document.getElementById('max_age').value = parseInt(maxAge || 0, 10) * parseInt(maxAgeUnit || 1, 10);
     });
 </script>
+</div>
 {% endblock %}

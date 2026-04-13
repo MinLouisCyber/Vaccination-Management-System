@@ -1,8 +1,9 @@
-{% extends "base.html" %}
+﻿{% extends "base.html" %}
 
-{% block title %}Đặt lịch tiêm - VaxCare{% endblock %}
+{% block title %}Đặt lịch tiêm - Vinavacci{% endblock %}
 
 {% block content %}
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
 <div class="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
     <div class="max-w-5xl mx-auto">
         <!-- Progress Stepper -->
@@ -35,7 +36,7 @@
             </div>
         </div>
 
-        <form method="POST" action="{{ url_for('book_appointment') }}" id="appointmentForm" class="space-y-8">
+        <form method="POST" action="{{ url_for('appointments.book_appointment') }}" id="appointmentForm" class="space-y-8">
             <!-- Hidden input for booking method -->
             <input type="hidden" name="booking_method" id="booking_method" value="by_schedule">
 
@@ -564,4 +565,5 @@
         showStep(1);
     });
 </script>
+</div>
 {% endblock %}

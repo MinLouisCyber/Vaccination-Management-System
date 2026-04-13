@@ -1,8 +1,9 @@
-{% extends "base.html" %}
+﻿{% extends "base.html" %}
 
-{% block title %}Quản lý lịch tiêm - VaxCare{% endblock %}
+{% block title %}Quản lý lịch tiêm - Vinavacci{% endblock %}
 
 {% block content %}
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
 <div class="space-y-6">
     <!-- Header -->
     <div class="bg-gradient-to-r from-blue-600 to-blue-800 rounded-lg shadow-lg p-6 flex justify-between items-center">
@@ -39,10 +40,10 @@
                     </td>
                     <td class="px-6 py-4">{{ schedule.dose_number }}</td>
                     <td class="px-6 py-4 flex space-x-2">
-                        <a href="{{ url_for('edit_schedule', schedule_id=schedule.schedule_id) }}" class="text-blue-600 hover:text-blue-800">
+                        <a href="{{ url_for('admin.edit_schedule', schedule_id=schedule.schedule_id) }}" class="text-blue-600 hover:text-blue-800">
                             <i class="fas fa-edit"></i>
                         </a>
-                        <form method="POST" action="{{ url_for('delete_schedule', schedule_id=schedule.schedule_id) }}" onsubmit="return confirm('Bạn có chắc muốn xóa lịch này không?')">
+                        <form method="POST" action="{{ url_for('admin.delete_schedule', schedule_id=schedule.schedule_id) }}" onsubmit="return confirm('Bạn có chắc muốn xóa lịch này không?')">
                             <button type="submit" class="text-red-600 hover:text-red-800">
                                 <i class="fas fa-trash"></i>
                             </button>
@@ -60,7 +61,7 @@
 <div id="addScheduleModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 hidden flex items-center justify-center">
     <div class="bg-white rounded-lg shadow-lg w-full max-w-md p-6">
         <h3 class="text-xl font-semibold mb-4">Thêm lịch tiêm mới</h3>
-        <form method="POST" action="{{ url_for('manage_schedules') }}">
+        <form method="POST" action="{{ url_for('admin.manage_schedules') }}">
             <div class="space-y-4">
                 <div>
                     <label class="form-label" for="date">Ngày</label>
@@ -93,5 +94,6 @@
             </div>
         </form>
     </div>
+</div>
 </div>
 {% endblock %}

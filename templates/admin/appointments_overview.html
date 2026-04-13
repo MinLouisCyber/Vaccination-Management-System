@@ -3,6 +3,7 @@
 {% block title %}Tổng quan lịch hẹn - Admin{% endblock %}
 
 {% block content %}
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
 <div class="space-y-8 p-6 bg-gray-50 min-h-screen">
     <!-- Header -->
     <div
@@ -242,7 +243,7 @@
                         <td class="px-6 py-4 align-middle whitespace-nowrap">
                             {% if appt.status == 'Pending' %}
                             <form method="POST"
-                                action="{{ url_for('admin_confirm_appointment', id=appt.appointment_id) }}"
+                                action="{{ url_for('admin.admin_confirm_appointment', id=appt.appointment_id) }}"
                                 style="display:inline;">
                                 <button type="submit" onclick="return confirm('Xác nhận cho phép người dân đến tiêm?')"
                                     class="inline-flex items-center px-3 py-1.5 border border-transparent text-xs font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors">
@@ -251,7 +252,7 @@
                             </form>
                             {% elif appt.status == 'Confirmed' %}
                             <form method="POST"
-                                action="{{ url_for('admin_complete_appointment', id=appt.appointment_id) }}"
+                                action="{{ url_for('admin.admin_complete_appointment', id=appt.appointment_id) }}"
                                 style="display:inline;">
                                 <button type="submit" onclick="return confirm('Xác nhận người dân đã tiêm xong?')"
                                     class="inline-flex items-center px-3 py-1.5 border border-transparent text-xs font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-colors">
@@ -330,4 +331,5 @@
         filterVaccine.addEventListener('change', filterAppointments);
     });
 </script>
+</div>
 {% endblock %}

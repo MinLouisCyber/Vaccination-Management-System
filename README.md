@@ -1,229 +1,137 @@
-# VaxCare - Vaccination Management System
+# Vinavacci - Hệ Thống Quản Lý Tiêm Chủng
 
-A comprehensive web-based vaccination management system built with Flask, allowing users to schedule vaccinations, manage profiles, and generate digital certificates. The system includes user, admin, and vaccine administrator roles with different privileges.
+<div align="center">
+  <img src="static/android-chrome-192x192.png" alt="Vinavacci Logo" width="120" />
+</div>
 
-## Features
+**Vinavacci** là một ứng dụng nền web toàn diện được phát triển bằng Flask (Python), giúp người dùng dễ dàng đặt lịch tiêm chủng, quản lý hồ sơ sức khỏe cá nhân và gia đình, đồng thời cung cấp các chứng nhận tiêm chủng điện tử. Hệ thống phân quyền chặt chẽ với các vai trò: Người dùng (User), Quản trị viên (Admin) và Quản lý Vắc-xin (Vaccine Admin).
 
-### User Features
-- User registration and authentication
-- Profile management for multiple family members
-- Vaccination appointment booking and management
-- Real-time AI chat support and insights
-- Digital certificate generation and download
-- Appointment rescheduling and cancellation
-- View vaccination history and upcoming appointments
+---
 
-### Admin Features
-- Vaccine inventory management
-- Vaccination center management
-- Schedule management
-- Appointment oversight
-- User management
-- System monitoring and analytics
+## 🌟 Tính Năng Nổi Bật
 
-### Technical Features
-- Secure password hashing
-- Role-based access control
-- SSL certificate management
-- Database connection pooling
-- PDF certificate generation
-- QR code generation for certificates
-- Real-time AI chat support
-- Responsive web interface
+### 👤 Dành cho Người dùng (User)
+- **Quản lý tài khoản:** Đăng ký, đăng nhập an toàn với mã hóa mật khẩu.
+- **Hồ sơ gia đình:** Tạo và quản lý hồ sơ tiêm chủng cho nhiều thành viên trong gia đình.
+- **Đặt lịch thông minh:** Dễ dàng tìm kiếm vắc-xin, trung tâm và chọn lịch tiêm phù hợp.
+- **Trợ lý AI (Chatbot):** Tích hợp AI tự động giải đáp các thông tin về sức khỏe và dịch vụ tiêm chủng theo thời gian thực.
+- **Chứng nhận điện tử:** Tự động tạo và tải xuống chứng nhận tiêm chủng file PDF có chứa mã QR.
+- **Quản lý lịch hẹn:** Xem lịch sử, hủy hoặc dời lịch hẹn nhanh chóng.
 
-## Technologies Used
+### 🛡️ Dành cho Quản trị viên (Admin)
+- **Quản lý kho (Inventory):** Kiểm soát số lượng và hạn sử dụng vắc-xin.
+- **Quản lý trung tâm:** Thêm, sửa, xóa thông tin các điểm tiêm chủng.
+- **Lên lịch tiêm:** Thiết lập lịch làm việc và phân bổ vắc-xin cho các trung tâm.
+- **Giám sát lịch hẹn:** Theo dõi tình trạng các ca tiêm chủng trên toàn hệ thống.
+- **Thống kê & Báo cáo:** Giao diện Dashboard trực quan theo dõi hoạt động hệ thống.
 
-- **Backend**: Python Flask
-- **Database**: MySQL (with SSL support)
-- **ORM**: SQLAlchemy
-- **Authentication**: Flask-Login
-- **PDF Generation**: ReportLab
-- **QR Code**: qrcode
-- **AI Integration**: Groq API
-- **Frontend**: HTML, CSS, JavaScript
-- **Security**: Werkzeug security
-- **Environment Management**: python-dotenv
+---
 
-## Relational Database Creation with MySQL
+## 🛠️ Công Nghệ Sử Dụng
 
-- Relational Schema:
-![Relational Schema](Relational_Schema.png)
+- **Backend:** Python, Flask (Kiến trúc Blueprint)
+- **Database:** MySQL (hỗ trợ bảo mật SSL)
+- **ORM:** SQLAlchemy
+- **Authentication:** Flask-Login, Werkzeug Security
+- **Tạo File PDF & QR:** ReportLab, qrcode
+- **Tích hợp AI:** Groq API (LLaMA-3)
+- **Frontend:** HTML5, CSS3, JavaScript (Jinja2 Templates)
+- **Môi trường & Triển khai:** python-dotenv, Gunicorn
 
+---
 
-1. **Install MySQL**  
-   Ensure MySQL is installed on your system. You can download it from [MySQL's official website](https://dev.mysql.com/downloads/installer/) or use a package manager like `apt` (Linux) or `brew` (Mac).  
+## 📂 Cấu Trúc Thư Mục
 
-2. **Create a Database and User**  
-   Log into MySQL and create a database for the application. Also, create a dedicated user with the necessary privileges.  
+Hệ thống được thiết kế theo kiến trúc **Blueprint (Phân hệ)** giúp rành mạch logic và dễ dàng mở rộng:
 
-3. **Enable SSL (If you are using an online instance of MySQL from providers like Aiven.io)**  
-    (Ignore this step if you are using a local MySQL database)
-   If using an online database or requiring encrypted connections, configure SSL and obtain the CA certificate.
-   - Encode the ca.pem (and client-cert.pem and client-key.pem if you have them) to Base64 string for compatibility with the given code.
-   ```bash
-    [Convert]::ToBase64String((Get-Content -Path "ca.pem" -Raw -Encoding Byte)) | Set-Content -Path "ca_base64.txt"
-    [Convert]::ToBase64String((Get-Content -Path "client-cert.pem" -Raw -Encoding Byte)) | Set-Content -Path "cert_base64.txt"
-    [Convert]::ToBase64String((Get-Content -Path "client-key.pem" -Raw -Encoding Byte)) | Set-Content -Path "key_base64.txt"
-   ```
-   - Add CA_PEM=your_base64_encoded_ca to your environent variables.
+```text
+vinavacci/
+├── app.py                # Khởi tạo ứng dụng (App Factory)
+├── config.py             # Định nghĩa cấu hình hệ thống
+├── extensions.py         # Khởi tạo plugins (db, login_manager)
+├── models.py             # Khai báo cấu trúc cơ sở dữ liệu (Database Models)
+├── requirements.txt      # Chứa các dependencies cần thiết
+├── \.env                 # Biến môi trường (Mật khẩu, API keys)
+├── routes/               # Bộ điều khiển (Controllers / Blueprints)
+│   ├── admin.py          # Xử lý logic của Quản trị viên
+│   ├── api.py            # Các endpoints API
+│   ├── appointments.py   # Logic đặt lịch tiêm
+│   ├── auth.py           # Xác thực (Đăng nhập/Đăng ký)
+│   ├── chat.py           # Xử lý chatbot AI Groq
+│   └── main.py           # Các trang chủ và Dashboard
+├── utils/                # Hàm tiện ích dùng chung
+│   ├── decorators.py     # Custom decorators (phân quyền)
+│   └── pdf.py            # Tiện ích tạo PDF chứng nhận tiêm chủng
+├── static/               # File tĩnh (CSS, JS, Hình ảnh)
+└── templates/            # Giao diện HTML (Jinja2)
+```
 
-4. **Update `.env` Configuration**  
-   Add your MySQL connection details to the `.env` file, including the `DATABASE_URL` and SSL certificate (that can be done by).  
+---
 
-5. **Initialize the Database**  
-   Run migrations to set up the required tables and relationships.  
+## ⚙️ Hướng Dẫn Cài Đặt
 
-6. **Verify Connection**  
-   Ensure the Flask application connects successfully to the MySQL database before running the server. 
+### 1. Yêu cầu hệ thống
+- Tải và cài đặt **Python 3.9+**
+- Cài đặt **MySQL Server** (hoặc sử dụng dịch vụ Cloud MySQL như Aiven.io)
 
-## Installation
+### 2. Thiết lập cơ sở dữ liệu
+Đảm bảo bạn đã khởi tạo một database trống trên MySQL. Nếu sử dụng SSL, bạn cần có CA Certificate (`ca.pem`). Encode các file chứng chỉ này sang Base64 nếu muốn thêm trực tiếp vào biến môi trường.
 
-1. Clone the repository:
+### 3. Clone dự án và cài đặt
+Mở terminal/command prompt và chạy các lệnh sau:
+
 ```bash
+# Clone source code
 git clone <repository-url>
-cd vaxcare
-```
+cd vinavacci
 
-2. Create and activate a virtual environment:
-```bash
+# Tạo môi trường ảo (Virtual Environment)
 python -m venv myenv
-source myenv/bin/activate  # On Windows: myenv\Scripts\activate
-```
 
-3. Install dependencies:
-```bash
+# Kích hoạt môi trường ảo
+# Windows:
+myenv\Scripts\activate
+# Linux/Mac:
+source myenv/bin/activate
+
+# Cài đặt thư viện
 pip install -r requirements.txt
 ```
 
-4. Create a `.env` file in the project root with the following variables:
-```
-DATABASE_URL=mysql://username:password@host:port/database_name
-SECRET_KEY=your_secret_key
+### 4. Cấu hình biến môi trường
+Tạo file `.env` tại thư mục gốc của dự án (`vinavacci/.env`) và điền các thông tin sau:
+
+```env
+DATABASE_URL=mysql+pymysql://<user>:<password>@<host>:<port>/<db_name>
+SECRET_KEY=your_super_secret_key
 GROQ_API_KEY=your_groq_api_key
-CA_PEM=your_ssl_certificate_in_base64
+# Nếu dùng MySQL Cloud cần SSL:
+CA_PEM=your_base64_encoded_ca_pem
 ```
 
-5. Initialize the database:
-```bash
-flask db upgrade
-```
+---
 
-## Running the Application
+## 🚀 Khởi Chạy Ứng Dụng
 
-### Development Server
+### Môi trường Phát triển (Development)
+Sử dụng Flask Development Server để tự do thay đổi mã nguồn:
+
 ```bash
 python app.py
 ```
+*Hệ thống sẽ chạy tại địa chỉ: `http://127.0.0.1:10000/`*
 
-### Production Server
+### Môi trường Thực tế (Production)
+Sử dụng **Gunicorn** cho hiệu suất cao (Hỗ trợ trên môi trường Linux):
+
 ```bash
-gunicorn -c gunicorn_config.py app:app
+gunicorn -c guincorn_config.py app:app
 ```
 
-## Project Structure
+---
 
-```
-vaxcare/
-|   .env
-|   .gitignore
-|   app.py
-|   Entity-Relationship(ER)-diagram.png
-|   guincorn_config.py
-|   LICENSE
-|   README.md
-|   Relational_Schema.png
-|   requirements.txt
-|   
-+---Documents
-|       Report.pdf
-|       
-+---static
-|       android-chrome-192x192.png
-|       android-chrome-512x512.png
-|       apple-touch-icon.png
-|       favicon-16x16.png
-|       favicon-32x32.png
-|       favicon.ico
-|       
-\---templates
-    |   admin_dashboard.html
-    |   base.html
-    |   book_appointment.html
-    |   certificates.html
-    |   chat.html
-    |   create_profile.html
-    |   edit_centre.html
-    |   edit_profile.html
-    |   edit_schedule.html
-    |   edit_vaccine.html
-    |   home.html
-    |   index.html
-    |   login.html
-    |   register.html
-    |   reschedule_appointment.html
-    |   temp.html
-    |   user_dashboard.html
-    |   vaccine_admin_dashboard.html
-    |   
-    +---admin
-    |       appointments_overview.html
-    |       edit_inventory.html
-    |       manage_centres.html
-    |       manage_inventory.html
-    |       manage_schedules.html
-    |       manage_vaccines.html
-    |       
-    \---errors
-            404.html
-            500.html
-```
+## 🔒 Bản Quyền & Giấy Phép
+Dự án được phân phối dưới giấy phép [MIT License](LICENSE).
 
-## Configuration
-
-### Database Configuration
-The application uses MySQL with SSL encryption. Make sure your database server supports SSL connections and provide the CA certificate in the `.env` file.
-If you want an online MySQL database, login to [Aiven Console](https://console.aiven.io/) to get your credentials and CA certificate.
-You can as well remove the CA certificate part from the app if you are using a local MySQL database instance.
-
-### Gunicorn Configuration
-The application includes a `gunicorn_config.py` with the following settings:
-- 4 worker processes
-- Binding to 0.0.0.0:10000
-- 120-second timeout
-
-## Security Features
-
-- Password hashing using Werkzeug
-- SSL/TLS database connections
-- Role-based access control
-- Session management
-- CSRF protection
-- Secure cookie handling
-
-## API Endpoints
-
-The application provides several API endpoints for:
-- Schedule management
-- Vaccine availability checking
-- Appointment management
-- Certificate generation
-- Chat functionality
-
-## Contributing
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## Acknowledgments
-
-- Flask framework and its extensions
-- ReportLab for PDF generation
-- Groq AI for chat support
-- All other open-source libraries used in this project
+---
+*© 2026 Vinavacci. Mọi quyền được bảo lưu.*

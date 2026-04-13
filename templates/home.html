@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}Trang chủ - VaxCare{% endblock %}
+{% block title %}Trang chủ - Vinavacci{% endblock %}
 
 {% block content %}
 <!-- ============================================================================= -->
@@ -38,7 +38,7 @@
         <h1 class="text-5xl md:text-6xl font-extrabold text-transparent bg-clip-text 
                      bg-gradient-to-r from-blue-200 via-white to-blue-300 
                      leading-tight tracking-tight">
-          VaxCare
+          Vinavacci
           <br />
           <span class="text-3xl md:text-4xl">Hệ thống tiêm chủng thông minh</span>
         </h1>
@@ -49,7 +49,7 @@
         </p>
 
         <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 justify-center md:justify-start pt-6">
-          <a href="{{ url_for('login') }}" class="px-8 py-4 bg-white text-indigo-900 rounded-full 
+          <a href="{{ url_for('auth.login') }}" class="px-8 py-4 bg-white text-indigo-900 rounded-full 
                font-semibold hover:bg-gray-100 transition transform hover:scale-105 
                shadow-xl hover:shadow-2xl">
             Bắt đầu ngay
@@ -67,7 +67,7 @@
         <div class="w-96 h-96 bg-white/10 backdrop-blur-xl rounded-3xl 
                       border border-white/20 p-6 shadow-2xl 
                       flex items-center justify-center">
-          <img src="https://i.postimg.cc/wvB2Tt97/9c028a70-f3a6-4dcc-9c15-1fcb83fe34ac.webp" alt="VaxCare Illustration"
+          <img src="https://i.postimg.cc/wvB2Tt97/9c028a70-f3a6-4dcc-9c15-1fcb83fe34ac.webp" alt="Vinavacci Illustration"
             class="w-full h-full object-cover rounded-3xl animate-float-slow" />
 
         </div>
@@ -140,7 +140,7 @@
     <div class="text-center mb-16">
       <h2 class="text-4xl font-bold text-gray-800">Tính năng nổi bật</h2>
       <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
-        VaxCare được thiết kế với sự tiện lợi của bạn. Khám phá nhiều tính năng sáng tạo giúp bạn quản lý hành trình
+        Vinavacci được thiết kế với sự tiện lợi của bạn. Khám phá nhiều tính năng sáng tạo giúp bạn quản lý hành trình
         tiêm chủng hiệu quả.
       </p>
     </div>
@@ -264,7 +264,7 @@
     <div class="text-center mb-16">
       <h2 class="text-4xl font-bold text-gray-800">Dịch vụ của chúng tôi</h2>
       <p class="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">
-        Tại VaxCare, chúng tôi cung cấp nhiều dịch vụ được thiết kế để đảm bảo hành trình tiêm chủng của bạn suôn sẻ, an
+        Tại Vinavacci, chúng tôi cung cấp nhiều dịch vụ được thiết kế để đảm bảo hành trình tiêm chủng của bạn suôn sẻ, an
         toàn và thân thiện.
       </p>
     </div>
@@ -384,7 +384,7 @@
     <div class="text-center mb-16">
       <h2 class="text-4xl font-bold text-gray-800">Câu hỏi thường gặp</h2>
       <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
-        Dưới đây là một số câu hỏi thường gặp về VaxCare, tính năng và dịch vụ của chúng tôi. Nhấp vào câu hỏi để xem
+        Dưới đây là một số câu hỏi thường gặp về Vinavacci, tính năng và dịch vụ của chúng tôi. Nhấp vào câu hỏi để xem
         câu trả lời.
       </p>
     </div>
@@ -395,11 +395,11 @@
         <button
           class="w-full text-left px-6 py-4 bg-white focus:outline-none focus:ring-2 focus:ring-blue-600 faq-trigger"
           data-target="#faq1">
-          <span class="font-medium text-gray-800">VaxCare là gì?</span>
+          <span class="font-medium text-gray-800">Vinavacci là gì?</span>
         </button>
         <div id="faq1" class="px-6 py-4 bg-gray-50 faq-content hidden">
           <p class="text-gray-700 leading-relaxed">
-            VaxCare là hệ thống quản lý tiêm chủng toàn diện cho phép người dùng tạo và quản lý hồ sơ, đặt và đổi lịch
+            Vinavacci là hệ thống quản lý tiêm chủng toàn diện cho phép người dùng tạo và quản lý hồ sơ, đặt và đổi lịch
             hẹn, tạo chứng nhận kỹ thuật số an toàn và nhận thông tin phân tích từ AI để tối ưu hóa hành trình tiêm
             chủng.
           </p>
@@ -442,7 +442,7 @@
         </button>
         <div id="faq4" class="px-6 py-4 bg-gray-50 faq-content hidden">
           <p class="text-gray-700 leading-relaxed">
-            Chứng nhận tiêm chủng kỹ thuật số là tài liệu chính thức do VaxCare tạo ra, bao gồm tất cả thông tin tiêm
+            Chứng nhận tiêm chủng kỹ thuật số là tài liệu chính thức do Vinavacci tạo ra, bao gồm tất cả thông tin tiêm
             chủng cùng mã QR để xác minh. Chúng phục vụ như bằng chứng miễn dịch.
           </p>
         </div>
@@ -452,7 +452,7 @@
         <button
           class="w-full text-left px-6 py-4 bg-white focus:outline-none focus:ring-2 focus:ring-blue-600 faq-trigger"
           data-target="#faq5">
-          <span class="font-medium text-gray-800">Dữ liệu của tôi trên VaxCare có an toàn không?</span>
+          <span class="font-medium text-gray-800">Dữ liệu của tôi trên Vinavacci có an toàn không?</span>
         </button>
         <div id="faq5" class="px-6 py-4 bg-gray-50 faq-content hidden">
           <p class="text-gray-700 leading-relaxed">
@@ -467,7 +467,7 @@
         <button
           class="w-full text-left px-6 py-4 bg-white focus:outline-none focus:ring-2 focus:ring-blue-600 faq-trigger"
           data-target="#faq6">
-          <span class="font-medium text-gray-800">VaxCare cung cấp những tính năng AI nào?</span>
+          <span class="font-medium text-gray-800">Vinavacci cung cấp những tính năng AI nào?</span>
         </button>
         <div id="faq6" class="px-6 py-4 bg-gray-50 faq-content hidden">
           <p class="text-gray-700 leading-relaxed">
@@ -481,11 +481,11 @@
         <button
           class="w-full text-left px-6 py-4 bg-white focus:outline-none focus:ring-2 focus:ring-blue-600 faq-trigger"
           data-target="#faq7">
-          <span class="font-medium text-gray-800">VaxCare có sử dụng được trên thiết bị di động không?</span>
+          <span class="font-medium text-gray-800">Vinavacci có sử dụng được trên thiết bị di động không?</span>
         </button>
         <div id="faq7" class="px-6 py-4 bg-gray-50 faq-content hidden">
           <p class="text-gray-700 leading-relaxed">
-            Hoàn toàn có thể. Thiết kế responsive của chúng tôi đảm bảo VaxCare hoàn toàn có thể truy cập và dễ sử dụng
+            Hoàn toàn có thể. Thiết kế responsive của chúng tôi đảm bảo Vinavacci hoàn toàn có thể truy cập và dễ sử dụng
             trên điện thoại, máy tính bảng và máy tính để bàn.
           </p>
         </div>
@@ -527,7 +527,7 @@
     <div class="text-center mb-16">
       <h2 class="text-4xl font-bold text-gray-800">Tin tức & Cập nhật</h2>
       <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
-        Cập nhật thông tin mới nhất về tính năng và tin tức liên quan đến VaxCare.
+        Cập nhật thông tin mới nhất về tính năng và tin tức liên quan đến Vinavacci.
       </p>
     </div>
     <!-- News Cards Grid -->
@@ -537,9 +537,9 @@
         <img src="https://i.postimg.cc/2y811N6s/93a8989f-6964-4f05-ab47-b6a2504cb62d.webp" alt="News 1"
           class="w-full h-64 object-cover">
         <div class="p-8">
-          <h3 class="text-2xl font-semibold text-gray-800 mb-4">VaxCare Ra Mắt Tính Năng AI Mới</h3>
+          <h3 class="text-2xl font-semibold text-gray-800 mb-4">Vinavacci Ra Mắt Tính Năng AI Mới</h3>
           <p class="text-gray-600 mb-6">
-            Chúng tôi vui mừng thông báo tích hợp chatbot AI tiên tiến vào VaxCare. Các tính năng mới này sẽ giúp bạn
+            Chúng tôi vui mừng thông báo tích hợp chatbot AI tiên tiến vào Vinavacci. Các tính năng mới này sẽ giúp bạn
             đưa ra quyết định dựa trên dữ liệu về lịch tiêm chủng.
           </p>
           <a href="#"
@@ -556,7 +556,7 @@
         <div class="p-8">
           <h3 class="text-2xl font-semibold text-gray-800 mb-4">Mở Rộng Trung Tâm Tiêm Chủng</h3>
           <p class="text-gray-600 mb-6">
-            Trong nỗ lực liên tục để tiêm chủng dễ tiếp cận hơn, VaxCare đã hợp tác với thêm nhiều trung tâm tiêm chủng.
+            Trong nỗ lực liên tục để tiêm chủng dễ tiếp cận hơn, Vinavacci đã hợp tác với thêm nhiều trung tâm tiêm chủng.
             Tìm trung tâm gần bạn và đặt lịch hẹn ngay hôm nay.
           </p>
           <a href="#"
@@ -715,43 +715,16 @@
 <!-- ============================================================================= -->
 <!--                           FOOTER SECTION START                               -->
 <!-- ============================================================================= -->
-<footer class="bg-gray-900 text-gray-300 py-12">
-  <div class="container mx-auto px-4">
-    <!-- Footer Top -->
-    <div class="flex flex-col md:flex-row justify-between items-center">
-      <div class="mb-6 md:mb-0">
-        <h3 class="text-3xl font-bold text-white">VaxCare</h3>
-        <p class="mt-2 text-gray-400">
-          Người đồng hành của bạn trong quản lý tiêm chủng.
-        </p>
-      </div>
-      <div>
-        <ul class="flex flex-wrap justify-center space-x-6">
-          <li><a href="#hero" class="hover:text-white transition">Trang chủ</a></li>
-          <li><a href="#features" class="hover:text-white transition">Tính năng</a></li>
-          <li><a href="#services" class="hover:text-white transition">Dịch vụ</a></li>
-          <li><a href="#faq" class="hover:text-white transition">FAQ</a></li>
-          <li><a href="#news" class="hover:text-white transition">Tin tức</a></li>
-        </ul>
-      </div>
-    </div>
-    <!-- Footer Bottom -->
-    <div class="mt-8 border-t border-gray-700 pt-6 text-center">
-      <p class="text-gray-500 mt-2">Đây chỉ là dự án mô phỏng DBMS.</p>
-      <p class="text-gray-500 mt-2">Không dành cho mục đích y tế thực tế. Chỉ để trình diễn.</p>
-    </div>
-  </div>
-</footer>
 <!-- ============================================================================= -->
-<!--                           FOOTER SECTION END                                 -->
+<!--                           FOOTER SECTION END (removed duplicate footer)      -->
 <!-- ============================================================================= -->
 
 
 
 
-<!-- ============================================================================= -->
-<!--                           SCRIPTS & INTERACTIVITY                           -->
-<!-- ============================================================================= -->
+{% endblock %}
+
+{% block extra_js %}
 <script>
   // Smooth scroll for anchor links
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -784,21 +757,11 @@
     });
   });
 
-  // Initialize AOS animations if available
   if (typeof AOS !== 'undefined') {
-    AOS.init({
-      duration: 1000,
-      once: true
-    });
+    AOS.init({ duration: 1000, once: true });
   }
 </script>
-<!-- ============================================================================= -->
-<!--                           END OF SCRIPTS & INTERACTIVITY                    -->
-<!-- ============================================================================= -->
-
-
-
-<!-- ============================================================================= -->
-<!--                           END OF HOME PAGE TEMPLATE                        -->
-<!-- ============================================================================= -->
 {% endblock %}
+
+
+

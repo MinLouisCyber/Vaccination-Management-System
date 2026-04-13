@@ -1,7 +1,7 @@
-<!-- user_dashboard.html -->
+﻿<!-- user_dashboard.html -->
 {% extends "base.html" %}
 
-{% block title %}Bảng điều khiển - VaxCare{% endblock %}
+{% block title %}Bảng điều khiển - Vinavacci{% endblock %}
 
 {% block content %}
 <div class="space-y-6">
@@ -19,7 +19,7 @@
                     <p class="mt-1 text-blue-100 text-sm sm:text-base">Quản lý lịch tiêm chủng và hồ sơ của bạn</p>
                 </div>
                 <div class="w-full sm:w-auto">
-                    <a href="{{ url_for('book_appointment') }}"
+                    <a href="{{ url_for('appointments.book_appointment') }}"
                     class="w-full sm:w-auto inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-blue-600 bg-white hover:bg-blue-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
                         <i class="fas fa-plus mr-2"></i>
                         Lịch hẹn mới
@@ -36,7 +36,7 @@
             <div class="bg-white rounded-lg shadow-md overflow-hidden">
                 <div class="px-6 py-4 bg-gray-50 border-b border-gray-200 flex justify-between items-center">
                     <h2 class="text-lg font-medium text-gray-900">Hồ sơ của bạn</h2>
-                    <a href="{{ url_for('create_profile') }}"
+                    <a href="{{ url_for('main.create_profile') }}"
                        class="inline-flex items-center px-3 py-1 border border-transparent rounded-md text-sm font-medium text-blue-600 bg-blue-100 hover:bg-blue-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
                         <i class="fas fa-plus mr-1"></i>
                         Thêm
@@ -55,7 +55,7 @@
                                         {{ profile.age }} tuổi • {{ profile.gender }}
                                     </p>
                                 </div>
-                                <a href="{{ url_for('edit_profile', profile_id=profile.profile_id) }}"
+                                <a href="{{ url_for('main.edit_profile', profile_id=profile.profile_id) }}"
                                    class="text-sm text-blue-600 hover:text-blue-800">
                                     Chỉnh sửa
                                 </a>
@@ -132,7 +132,7 @@
                             </div>
                             <div class="flex flex-col sm:flex-row items-stretch sm:items-center space-y-2 sm:space-y-0 sm:space-x-4">
                                 {% if appointment.status in ['Pending', 'Confirmed'] and appointment.appointment_date >= today %}
-                                <button onclick="if(confirm('Bạn có chắc muốn hủy lịch hẹn này không?')) window.location.href='{{ url_for('cancel_appointment', appointment_id=appointment.appointment_id) }}'"
+                                <button onclick="if(confirm('Bạn có chắc muốn hủy lịch hẹn này không?')) window.location.href='{{ url_for('appointments.cancel_appointment', appointment_id=appointment.appointment_id) }}'"
                                         class="w-full sm:w-auto inline-flex items-center justify-center px-3 py-2 border border-red-300 rounded-md shadow-sm text-sm font-medium text-red-600 bg-white hover:bg-red-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-all duration-200">
                                     <i class="fas fa-times mr-2"></i>
                                     Hủy
@@ -150,7 +150,7 @@
                         <h3 class="mt-2 text-sm font-medium text-gray-900">Chưa có lịch hẹn</h3>
                         <p class="mt-1 text-sm text-gray-500">Bắt đầu bằng cách đặt lịch hẹn đầu tiên của bạn.</p>
                         <div class="mt-6">
-                            <a href="{{ url_for('book_appointment') }}"
+                            <a href="{{ url_for('appointments.book_appointment') }}"
                                class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
                                 <i class="fas fa-plus mr-2"></i>
                                 Đặt lịch hẹn
