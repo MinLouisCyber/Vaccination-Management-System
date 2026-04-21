@@ -88,12 +88,12 @@ def book_appointment():
     vaccines     = Vaccine.query.all()
 
     schedule_vaccines = {
-        s.schedule_id: [{'id': v.vaccine_id, 'name': v.name} for v in s.vaccines]
+        s.schedule_id: [{'id': v.vaccine_id, 'name': v.name, 'price': v.price, 'min_age': v.min_age, 'max_age': v.max_age} for v in s.vaccines]
         for s in schedules
     }
     vaccine_schedules = {
         v.vaccine_id: [
-            {'id': s.schedule_id, 'date': s.date.strftime('%Y-%m-%d'), 'centre_name': s.centre.name}
+            {'id': s.schedule_id, 'date': s.date.strftime('%d/%m/%Y'), 'centre_name': s.centre.name}
             for s in Schedule.query.filter(
                 Schedule.date >= current_date,
                 Schedule.vaccines.contains(v)

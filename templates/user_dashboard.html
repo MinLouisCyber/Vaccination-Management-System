@@ -119,7 +119,7 @@
                                         {% endif %}
                                     </div>
                                     <div class="text-sm text-gray-500">
-                                        {{ appointment.appointment_date.strftime('%B %d, %Y') }} at {{ appointment.time_slot.strftime('%I:%M %p') }}
+                                        Ngày {{ appointment.appointment_date.strftime('%d/%m/%Y') }} lúc {{ appointment.time_slot.strftime('%H:%M') }}
                                     </div>
                                     <div class="text-sm text-gray-500 truncate">
                                         {{ appointment.schedule.centre.name }}

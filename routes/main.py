@@ -1,4 +1,4 @@
-from datetime import date, datetime
+from datetime import date, datetime, timedelta
 
 from flask import Blueprint, render_template, redirect, url_for, flash
 from flask_login import login_required, current_user
@@ -18,21 +18,68 @@ main_bp = Blueprint('main', __name__)
 def home():
     return render_template('home.html')
 
+@main_bp.route('/vaccine-prices')
+def vaccine_prices():
+    vaccines = Vaccine.query.all()
+    return render_template('vaccine_prices.html', vaccines=vaccines)
 
 @main_bp.route('/dashboard')
 @login_required
 def dashboard():
+    from flask import request
     if current_user.role == ROLE_ADMIN:
-        chart_labels = ['Jan', 'Feb', 'Mar', 'Apr', 'May']
-        chart_data   = [10, 20, 30, 40, 50]
+        today = date.today()
+        start_date_str = request.args.get('start_date')
+        end_date_str = request.args.get('end_date')
+
+        start_date = today - timedelta(days=6)
+        end_date = today
+
+        if start_date_str and end_date_str:
+            try:
+                start_date = datetime.strptime(start_date_str, '%Y-%m-%d').date()
+                end_date = datetime.strptime(end_date_str, '%Y-%m-%d').date()
+            except ValueError:
+                pass
+
+        chart_labels = []
+        chart_data_booked = []
+        chart_data_cancelled = []
+        chart_data_completed = []
+        
+        current_date_iter = start_date
+        while current_date_iter <= end_date:
+            chart_labels.append(current_date_iter.strftime('%d/%m'))
+            
+            booked = Appointment.query.filter(
+                Appointment.appointment_date == current_date_iter,
+                Appointment.status.in_(['Pending', 'Confirmed'])
+            ).count()
+            
+            cancelled = Appointment.query.filter(
+                Appointment.appointment_date == current_date_iter,
+                Appointment.status == 'Cancelled'
+            ).count()
+            
+            completed = Appointment.query.filter(
+                Appointment.appointment_date == current_date_iter,
+                Appointment.status == 'Completed'
+            ).count()
+            
+            chart_data_booked.append(booked)
+            chart_data_cancelled.append(cancelled)
+            chart_data_completed.append(completed)
+            
+            current_date_iter += timedelta(days=1)
+
         vaccines     = Vaccine.query.all()
         centres      = VaccineCentre.query.all()
         today_appointments = Appointment.query.filter(
-            Appointment.appointment_date == date.today()
+            Appointment.appointment_date == today
         ).count()
         recent_activities = [
-            {"description": "Vaccine stock updated", "timestamp": datetime.now()},
-            {"description": "Schedules Updated",     "timestamp": datetime.now()},
+            {"description": "Cập nhật kho vắc-xin", "timestamp": datetime.now()},
+            {"description": "Cập nhật lịch tiêm",     "timestamp": datetime.now()},
         ]
         return render_template(
             'admin_dashboard.html',
@@ -41,7 +88,11 @@ def dashboard():
             today_appointments=today_appointments,
             recent_activities=recent_activities,
             chart_labels=chart_labels,
-            chart_data=chart_data,
+            chart_data_booked=chart_data_booked,
+            chart_data_cancelled=chart_data_cancelled,
+            chart_data_completed=chart_data_completed,
+            start_date=start_date.strftime('%Y-%m-%d'),
+            end_date=end_date.strftime('%Y-%m-%d'),
         )
 
     elif current_user.role == ROLE_VACCINE_ADMIN:

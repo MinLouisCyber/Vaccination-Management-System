@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block title %}Bảng Giá Vaccine - Vinavacci{% endblock %}
+
+{% macro format_age(weeks) %}
+  {% if weeks >= 52 and weeks % 52 == 0 %}
+    {{ weeks // 52 }} tuổi
+  {% elif weeks >= 4 and weeks % 4 == 0 %}
+    {{ weeks // 4 }} tháng
+  {% else %}
+    {{ weeks }} tuần
+  {% endif %}
+{% endmacro %}
+
+{% block content %}
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div class="bg-white rounded-lg shadow-md p-6">
+        <h2 class="text-2xl font-bold text-gray-800 mb-6 border-b pb-2">Tra cứu bảng giá vắc-xin</h2>
+        <div class="overflow-x-auto">
+            <table class="w-full border-collapse">
+                <thead class="bg-gray-50 border-b border-gray-200">
+                    <tr>
+                        <th class="px-6 py-3 text-left border text-xs font-medium text-gray-500 uppercase tracking-wider">STT</th>
+                        <th class="px-6 py-3 text-left border text-xs font-medium text-gray-500 uppercase tracking-wider">Tên vắc-xin</th>
+                        <th class="px-6 py-3 text-left border text-xs font-medium text-gray-500 uppercase tracking-wider">Mô tả</th>
+                        <th class="px-6 py-3 text-left border text-xs font-medium text-gray-500 uppercase tracking-wider">Khoảng tuổi</th>
+                        <th class="px-6 py-3 text-left border text-xs font-medium text-gray-500 uppercase tracking-wider">Giá (VNĐ)</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-200">
+                    {% for vaccine in vaccines %}
+                    <tr class="hover:bg-gray-50">
+                        <td class="px-6 py-4 border text-sm text-gray-500">{{ loop.index }}</td>
+                        <td class="px-6 py-4 border text-sm font-medium text-gray-900">{{ vaccine.name }}</td>
+                        <td class="px-6 py-4 border text-sm text-gray-500">{{ vaccine.description }}</td>
+                        <td class="px-6 py-4 border text-sm text-gray-500">{{ format_age(vaccine.min_age) }} - {{ format_age(vaccine.max_age) }}</td>
+                        <td class="px-6 py-4 border text-sm text-blue-600 font-semibold">{{ "{:,.0f}".format(vaccine.price) if vaccine.price else "Liên hệ" }}</td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td colspan="5" class="px-6 py-4 text-center text-gray-500">Chưa có thông tin cập nhật bảng giá vắc-xin.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

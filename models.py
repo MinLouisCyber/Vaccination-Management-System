@@ -26,8 +26,8 @@ ROLE_USER          = 'user'
 ROLE_ADMIN         = 'admin'
 ROLE_VACCINE_ADMIN = 'vaccine_admin'
 
-ADMIN_EMAILS         = ['admin@example.com']
-VACCINE_ADMIN_EMAILS = ['vaccine_admin@example.com']
+ADMIN_EMAILS         = ['admin@admin.com']
+VACCINE_ADMIN_EMAILS = ['vaccine_admin@admin.com']
 
 
 class User(UserMixin, db.Model):
@@ -68,6 +68,7 @@ class Vaccine(db.Model):
     min_age     = db.Column(db.Integer)
     max_age     = db.Column(db.Integer)
     name        = db.Column(db.String(100))
+    price       = db.Column(db.Float, default=0.0)
 
 
 class Inventory(db.Model):

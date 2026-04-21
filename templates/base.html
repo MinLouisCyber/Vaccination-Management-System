@@ -151,6 +151,8 @@
 
                 <!-- Desktop Navigation -->
                 <div class="hidden lg:flex lg:items-center lg:space-x-6 md:flex md:items-center md:space-x-4">
+                    <a href="{{ url_for('main.vaccine_prices') }}"
+                        class="nav-link inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-500">Bảng giá vaccine</a>
                     {% if current_user.is_authenticated and current_user.role == 'user' %}
                     <a href="{{ url_for('main.dashboard') }}"
                         class="nav-link inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-500">Bảng điều
@@ -262,6 +264,8 @@
                         <a href="{{ url_for('main.home') }}"
                             class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50">Trang
                             chủ</a>
+                        <a href="{{ url_for('main.vaccine_prices') }}"
+                            class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50">Bảng giá vaccine</a>
                         {% if current_user.is_authenticated %}
                         <a href="{{ url_for('main.dashboard') }}"
                             class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50">Bảng

@@ -63,6 +63,12 @@
                     </div>
                     <input type="hidden" name="max_age" id="max_age">
                 </div>
+                <!-- Add Price -->
+                <div>
+                    <label for="price" class="block text-sm font-medium text-gray-700">Giá (VNĐ)</label>
+                    <input type="number" name="price" id="price" step="1" required
+                           class="mt-1 p-2 w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                </div>
             </div>
             <div class="flex justify-end">
                 <button type="submit"
@@ -82,6 +88,7 @@
                     <tr>
                         <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tên</th>
                         <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Mô tả</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Giá</th>
                         <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Khoảng tuổi</th>
                         <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Thao tác</th>
                     </tr>
@@ -91,6 +98,7 @@
                     <tr>
                         <td class="px-6 py-4">{{ vaccine.name }}</td>
                         <td class="px-6 py-4">{{ vaccine.description }}</td>
+                        <td class="px-6 py-4">{{ "{:,.0f}".format(vaccine.price) if vaccine.price else "0" }} đ</td>
                         <td class="px-6 py-4">{{ format_age(vaccine.min_age) }} - {{ format_age(vaccine.max_age) }}</td>
                         <td class="px-6 py-4 flex space-x-2">
                             <a href="{{ url_for('admin.edit_vaccine', vaccine_id=vaccine.vaccine_id) }}" class="text-blue-600 hover:text-blue-800">

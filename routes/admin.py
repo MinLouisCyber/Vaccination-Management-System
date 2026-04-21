@@ -24,7 +24,8 @@ def manage_vaccines():
             name=request.form.get('name'),
             description=request.form.get('description'),
             min_age=int(request.form.get('min_age')),
-            max_age=int(request.form.get('max_age'))
+            max_age=int(request.form.get('max_age')),
+            price=float(request.form.get('price', 0.0)) if request.form.get('price') else 0.0
         )
         db.session.add(vaccine)
         db.session.commit()
@@ -46,6 +47,7 @@ def edit_vaccine(vaccine_id):
         vaccine.description = request.form.get('description')
         vaccine.min_age     = request.form.get('min_age')
         vaccine.max_age     = request.form.get('max_age')
+        vaccine.price       = float(request.form.get('price', 0.0)) if request.form.get('price') else 0.0
         db.session.commit()
         flash('Vaccine updated successfully!', 'success')
         return redirect(url_for('admin.manage_vaccines'))
@@ -327,6 +329,7 @@ def admin_complete_appointment(id):
         return redirect(url_for('admin.admin_appointments'))
 
     appointment.status = 'Completed'
+    
     db.session.commit()
     flash('Đã xác nhận hoàn thành tiêm chủng thành công!', 'success')
     return redirect(url_for('admin.admin_appointments'))

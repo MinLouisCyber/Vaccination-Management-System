@@ -58,7 +58,7 @@
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                             {% for profile in profiles %}
                             <label class="relative group cursor-pointer">
-                                <input type="radio" name="profile_id" value="{{ profile.profile_id }}" required
+                                <input type="radio" name="profile_id" value="{{ profile.profile_id }}" data-age="{{ profile.age }}" required
                                     class="peer sr-only">
                                 <div class="p-4 bg-white rounded-lg border-2 border-gray-200 
                                             transition-all duration-200 
@@ -137,8 +137,7 @@
                         <div id="schedule_first_section" class="space-y-6">
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div class="space-y-4">
-                                    <label class="block text-sm font-medium text-gray-700">Select Date &
-                                        Location</label>
+                                    <label class="block text-sm font-medium text-gray-700">Chọn ngày và địa điểm</label>
                                     <select id="schedule_id" name="schedule_id" required
                                         class="w-full rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
                                         <option value="">Chọn ngày và địa điểm...</option>
@@ -147,7 +146,7 @@
                                         <option value="{{ schedule.schedule_id }}"
                                             data-vaccines='{{ schedule_vaccines[schedule.schedule_id] | tojson }}'
                                             data-date='{{ schedule.date.strftime("%Y-%m-%d") }}'>
-                                            {{ schedule.date.strftime('%B %d, %Y') }} - {{ schedule.centre.name }}
+                                            Ngày {{ schedule.date.strftime('%d/%m/%Y') }} - {{ schedule.centre.name }}
                                         </option>
                                         {% endif %}
                                         {% endfor %}
@@ -173,6 +172,9 @@
                                         <option value="">Chọn một vắc-xin...</option>
                                         {% for vaccine in vaccines %}
                                         <option value="{{ vaccine.vaccine_id }}"
+                                            data-price="{{ vaccine.price }}"
+                                            data-min-age="{{ vaccine.min_age }}"
+                                            data-max-age="{{ vaccine.max_age }}"
                                             data-schedules='{{ vaccine_schedules[vaccine.vaccine_id] | tojson }}'>
                                             {{ vaccine.name }}
                                         </option>
@@ -180,8 +182,7 @@
                                     </select>
                                 </div>
                                 <div class="space-y-4">
-                                    <label class="block text-sm font-medium text-gray-700">Select Date &
-                                        Location</label>
+                                    <label class="block text-sm font-medium text-gray-700">Chọn ngày và địa điểm</label>
                                     <select id="schedule_id_vaccine" name="schedule_id_vaccine" required
                                         class="w-full rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
                                         <option value="">Chọn vắc-xin trước...</option>
@@ -221,7 +222,54 @@
 
                 <!-- Step 3: Confirmation -->
                 <div id="step-3-content" class="hidden transition-all duration-500">
-                    <!-- ... Confirmation content remains the same ... -->
+                    <div class="bg-gradient-to-r from-blue-600 to-blue-800 px-6 py-4">
+                        <h3 class="text-xl font-semibold text-white flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            Xác nhận thông tin
+                        </h3>
+                    </div>
+                    <div class="p-6">
+                        <div class="bg-blue-50 rounded-lg p-6 border border-blue-100">
+                            <dl class="space-y-4">
+                                <div>
+                                    <dt class="text-sm font-medium text-gray-500">Hồ sơ tiêm chủng</dt>
+                                    <dd class="mt-1 text-lg font-semibold text-gray-900" id="confirm-profile">-</dd>
+                                </div>
+                                <div class="pt-4 border-t border-blue-200">
+                                    <dt class="text-sm font-medium text-gray-500">Vắc-xin</dt>
+                                    <dd class="mt-1 text-lg font-semibold text-gray-900" id="confirm-vaccine">-</dd>
+                                </div>
+                                <div class="pt-4 border-t border-blue-200">
+                                    <dt class="text-sm font-medium text-gray-500">Thời gian hẹn</dt>
+                                    <dd class="mt-1 text-lg font-semibold text-gray-900" id="confirm-datetime">-</dd>
+                                </div>
+                                <div class="pt-4 border-t border-blue-200">
+                                    <dt class="text-sm font-medium text-gray-500">Địa điểm</dt>
+                                    <dd class="mt-1 text-lg font-semibold text-gray-900" id="confirm-location">-</dd>
+                                </div>
+                                <div class="pt-4 border-t border-blue-200">
+                                    <dt class="text-sm font-medium text-gray-500">Phí dự kiến</dt>
+                                    <dd class="mt-1 text-lg font-bold text-red-600" id="confirm-price">Liên hệ</dd>
+                                </div>
+                            </dl>
+                        </div>
+                        <div class="mt-6 bg-yellow-50 border-l-4 border-yellow-400 p-4">
+                            <div class="flex">
+                                <div class="flex-shrink-0">
+                                    <svg class="h-5 w-5 text-yellow-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                                <div class="ml-3">
+                                    <p class="text-sm text-yellow-700">
+                                        Vui lòng kiểm tra kỹ thông tin trước khi xác nhận. Phí tiêm chủng sẽ được thanh toán trực tiếp tại trung tâm (nếu có).
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Navigation Buttons -->
@@ -233,7 +281,7 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M10 19l-7-7m0 0l7-7m-7 7h18" />
                         </svg>
-                        Previous
+                        Quay Lại
                     </button>
                     <button type="button" id="nextBtn"
                         class="inline-flex items-center px-6 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors duration-200">
@@ -314,6 +362,34 @@
 </style>
 
 <script>
+    function showToast(message, type = 'error') {
+        let container = document.getElementById('toast-container');
+        if (!container) {
+            container = document.createElement('div');
+            container.id = 'toast-container';
+            container.className = 'fixed top-20 right-4 z-50 space-y-2';
+            document.body.appendChild(container);
+        }
+        
+        const toast = document.createElement('div');
+        toast.className = `flex items-center p-4 mb-4 text-sm rounded-lg shadow-lg transform transition-all duration-300 translate-x-full ${
+            type === 'error' ? 'text-red-800 bg-red-50 border border-red-200' : 'text-green-800 bg-green-50 border border-green-200'
+        }`;
+        
+        toast.innerHTML = `
+            <i class="fas ${type === 'error' ? 'fa-exclamation-circle' : 'fa-check-circle'} mr-3 text-xl"></i>
+            <div>${message.replace(/\n/g, '<br>')}</div>
+        `;
+        
+        container.appendChild(toast);
+        
+        setTimeout(() => toast.classList.remove('translate-x-full'), 10);
+        setTimeout(() => {
+            toast.classList.add('translate-x-full');
+            setTimeout(() => toast.remove(), 300);
+        }, 3500);
+    }
+
     document.addEventListener('DOMContentLoaded', function () {
         let currentStep = 1;
         const totalSteps = 3;
@@ -434,6 +510,9 @@
                 const option = document.createElement('option');
                 option.value = vaccine.id;  // Ensure this matches the correct key
                 option.textContent = vaccine.name;
+                option.dataset.price = vaccine.price || 0;
+                option.dataset.minAge = vaccine.min_age || 0;
+                option.dataset.maxAge = vaccine.max_age || 0;
                 vaccineScheduleSelect.appendChild(option);
             });
 
@@ -523,9 +602,17 @@
             currentStep = step;
         }
 
+        function formatAge(weeks) {
+            if (weeks >= 52 && weeks % 52 === 0) return `${weeks / 52} tuổi`;
+            if (weeks >= 4 && weeks % 4 === 0) return `${weeks / 4} tháng`;
+            return `${weeks} tuần`;
+        }
+
         function validateStep(step) {
             if (step === 1) {
-                return document.querySelector('input[name="profile_id"]:checked') !== null;
+                const isValid = document.querySelector('input[name="profile_id"]:checked') !== null;
+                if (!isValid) showToast('Vui lòng chọn một hồ sơ tiêm chủng trước khi tiếp tục.');
+                return isValid;
             }
             if (step === 2) {
                 const method = bookingMethodInput.value;
@@ -537,7 +624,83 @@
                     : vaccineDirectSelect.value.trim() !== '';
                 const timeSelected = document.querySelector('input[name="time_slot"]:checked') !== null;
 
-                return scheduleSelected && vaccineSelected && timeSelected;
+                if (!scheduleSelected || !vaccineSelected || !timeSelected) {
+                    showToast('Vui lòng chọn đầy đủ vắc-xin, địa điểm và thời gian hẹn.');
+                    return false;
+                }
+
+                // Update confirmation details
+                // Get selected profile
+                const selectedProfileRadio = document.querySelector('input[name="profile_id"]:checked');
+                let profileAgeInYears = 0;
+                if (selectedProfileRadio) {
+                    const profileName = selectedProfileRadio.closest('div').querySelector('h4').textContent.trim();
+                    document.getElementById('confirm-profile').textContent = profileName;
+                    profileAgeInYears = parseInt(selectedProfileRadio.dataset.age || 0); // Profile's age in years
+                }
+                const profileAgeInWeeks = profileAgeInYears * 52; // Convert years to weeks for comparison
+
+                // Get selected schedule/location and vaccine
+                let scheduleText = '';
+                let vaccineText = '';
+                let vaccinePrice = 'Liên hệ';
+                let minAge = 0;
+                let maxAge = 0;
+                
+                if (method === 'by_schedule') {
+                    const sSelect = document.getElementById('schedule_id');
+                    scheduleText = sSelect.options[sSelect.selectedIndex].text;
+                    const vSelect = document.getElementById('vaccine_id_schedule');
+                    vaccineText = vSelect.options[vSelect.selectedIndex].text;
+                    minAge = parseInt(vSelect.options[vSelect.selectedIndex].dataset.minAge || 0);
+                    maxAge = parseInt(vSelect.options[vSelect.selectedIndex].dataset.maxAge || 0);
+                    const price = vSelect.options[vSelect.selectedIndex].dataset.price;
+                    if (price && price !== "0") {
+                        vaccinePrice = parseInt(price).toLocaleString('vi-VN') + ' VNĐ';
+                    } else if (price === "0") {
+                        vaccinePrice = 'Liên Hệ';
+                    }
+                } else {
+                    const vSelect = document.getElementById('vaccine_id_direct');
+                    vaccineText = vSelect.options[vSelect.selectedIndex].text;
+                    minAge = parseInt(vSelect.options[vSelect.selectedIndex].dataset.minAge || 0);
+                    maxAge = parseInt(vSelect.options[vSelect.selectedIndex].dataset.maxAge || 0);
+                    const price = vSelect.options[vSelect.selectedIndex].dataset.price;
+                    if (price && price !== "0") {
+                        vaccinePrice = parseInt(price).toLocaleString('vi-VN') + ' VNĐ';
+                    } else if (price === "0") {
+                        vaccinePrice = 'Miễn phí';
+                    }
+                    const sSelect = document.getElementById('schedule_id_vaccine');
+                    scheduleText = sSelect.options[sSelect.selectedIndex].text;
+                }
+
+                // --- Age Validation ---
+                if (profileAgeInWeeks < minAge || profileAgeInWeeks > maxAge) {
+                    showToast(`Độ tuổi của hồ sơ này (${profileAgeInYears} tuổi) không phù hợp để tiêm vắc-xin ${vaccineText}.\nVắc-xin này chỉ tiêm cho người từ ${formatAge(minAge)} đến ${formatAge(maxAge)}.`);
+                    return false;
+                }
+
+                document.getElementById('confirm-vaccine').textContent = vaccineText;
+                
+                // Set location (extracting from scheduleText "Date - Location")
+                const locParts = scheduleText.split(' - ');
+                if (locParts.length > 1) {
+                    document.getElementById('confirm-location').textContent = locParts.slice(1).join(' - ');
+                } else {
+                    document.getElementById('confirm-location').textContent = scheduleText;
+                }
+                
+                // Get selected time slot
+                const selectedTimeRadio = document.querySelector('input[name="time_slot"]:checked');
+                if (selectedTimeRadio) {
+                    const selectedTime = selectedTimeRadio.value;
+                    const selectedDate = locParts[0] || '';
+                    document.getElementById('confirm-datetime').textContent = `${selectedTime}, ${selectedDate}`;
+                }
+
+                document.getElementById('confirm-price').textContent = vaccinePrice;
+                return true;
             }
             return true;
         }
@@ -551,7 +714,6 @@
 
         nextBtn.addEventListener('click', () => {
             if (!validateStep(currentStep)) {
-                alert('Vui lòng điền đầy đủ các trường bắt buộc trước khi tiếp tục.');
                 return;
             }
 
