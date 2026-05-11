@@ -17,7 +17,7 @@ admin_bp = Blueprint('admin', __name__, url_prefix='/admin')
 
 @admin_bp.route('/vaccines', methods=['GET', 'POST'])
 @login_required
-@role_required([ROLE_ADMIN])
+@role_required([ROLE_ADMIN, ROLE_VACCINE_ADMIN])
 def manage_vaccines():
     if request.method == 'POST':
         vaccine = Vaccine(
@@ -38,7 +38,7 @@ def manage_vaccines():
 
 @admin_bp.route('/vaccines/edit/<int:vaccine_id>', methods=['GET', 'POST'])
 @login_required
-@role_required([ROLE_ADMIN])
+@role_required([ROLE_ADMIN, ROLE_VACCINE_ADMIN])
 def edit_vaccine(vaccine_id):
     vaccine = Vaccine.query.get_or_404(vaccine_id)
 
@@ -57,7 +57,7 @@ def edit_vaccine(vaccine_id):
 
 @admin_bp.route('/vaccines/delete/<int:vaccine_id>', methods=['POST'])
 @login_required
-@role_required([ROLE_ADMIN])
+@role_required([ROLE_ADMIN, ROLE_VACCINE_ADMIN])
 def delete_vaccine(vaccine_id):
     vaccine = Vaccine.query.get_or_404(vaccine_id)
 
@@ -75,7 +75,7 @@ def delete_vaccine(vaccine_id):
 
 @admin_bp.route('/schedules', methods=['GET', 'POST'])
 @login_required
-@role_required([ROLE_ADMIN, ROLE_VACCINE_ADMIN])
+@role_required([ROLE_ADMIN])
 def manage_schedules():
     if request.method == 'POST':
         schedule = Schedule(
@@ -103,7 +103,7 @@ def manage_schedules():
 
 @admin_bp.route('/schedules/edit/<int:schedule_id>', methods=['GET', 'POST'])
 @login_required
-@role_required([ROLE_ADMIN, ROLE_VACCINE_ADMIN])
+@role_required([ROLE_ADMIN])
 def edit_schedule(schedule_id):
     schedule = Schedule.query.get_or_404(schedule_id)
     centres  = VaccineCentre.query.all()
@@ -128,7 +128,7 @@ def edit_schedule(schedule_id):
 
 @admin_bp.route('/schedules/delete/<int:schedule_id>', methods=['POST'])
 @login_required
-@role_required([ROLE_ADMIN, ROLE_VACCINE_ADMIN])
+@role_required([ROLE_ADMIN])
 def delete_schedule(schedule_id):
     schedule = Schedule.query.get_or_404(schedule_id)
 
@@ -146,7 +146,7 @@ def delete_schedule(schedule_id):
 
 @admin_bp.route('/centres', methods=['GET', 'POST'])
 @login_required
-@role_required([ROLE_ADMIN])
+@role_required([ROLE_ADMIN, ROLE_VACCINE_ADMIN])
 def manage_centres():
     if request.method == 'POST':
         centre = VaccineCentre(
@@ -166,7 +166,7 @@ def manage_centres():
 
 @admin_bp.route('/centres/edit/<int:centre_id>', methods=['GET', 'POST'])
 @login_required
-@role_required([ROLE_ADMIN])
+@role_required([ROLE_ADMIN, ROLE_VACCINE_ADMIN])
 def edit_centre(centre_id):
     centre = VaccineCentre.query.get_or_404(centre_id)
 
@@ -184,7 +184,7 @@ def edit_centre(centre_id):
 
 @admin_bp.route('/centres/delete/<int:centre_id>', methods=['POST'])
 @login_required
-@role_required([ROLE_ADMIN])
+@role_required([ROLE_ADMIN, ROLE_VACCINE_ADMIN])
 def delete_centre(centre_id):
     centre = VaccineCentre.query.get_or_404(centre_id)
 

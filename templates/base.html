@@ -199,12 +199,12 @@
                     <a href="{{ url_for('main.dashboard') }}"
                         class="nav-link inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-500">Bảng điều
                         khiển</a>
-                    <a href="{{ url_for('admin.manage_schedules') }}"
+                    <a href="{{ url_for('admin.manage_vaccines') }}"
                         class="nav-link inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-500">Quản lý
-                        lịch tiêm</a>
-                    <a href="{{ url_for('main.view_certificates') }}"
-                        class="nav-link inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-500">Lịch sử
-                        tiêm chủng</a>
+                        vắc-xin</a>
+                    <a href="{{ url_for('admin.manage_centres') }}"
+                        class="nav-link inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-500">Quản lý
+                        trung tâm</a>
                     {% endif %}
                 </div>
 
@@ -279,12 +279,12 @@
                             sử tiêm chủng</a>
                         {% endif %}
                         {% if current_user.role == 'vaccine_admin' %}
-                        <a href="{{ url_for('main.view_certificates') }}"
-                            class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50">Lịch
-                            sử tiêm chủng</a>
-                        <a href="{{ url_for('admin.manage_schedules') }}"
+                        <a href="{{ url_for('admin.manage_vaccines') }}"
                             class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50">Quản
-                            lý lịch tiêm</a>
+                            lý vắc-xin</a>
+                        <a href="{{ url_for('admin.manage_centres') }}"
+                            class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50">Quản
+                            lý trung tâm</a>
                         {% endif %}
                         {% if current_user.role == 'admin' %}
                         <a href="{{ url_for('admin.manage_vaccines') }}"

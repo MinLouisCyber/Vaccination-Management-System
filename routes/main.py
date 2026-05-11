@@ -96,7 +96,20 @@ def dashboard():
         )
 
     elif current_user.role == ROLE_VACCINE_ADMIN:
-        return render_template('vaccine_admin_dashboard.html')
+        vaccines = Vaccine.query.all()
+        centres = VaccineCentre.query.all()
+        
+        # Sort or reverse to get recent ones, assuming appended at end
+        recent_vaccines = vaccines[-5:] if vaccines else []
+        recent_centres = centres[-5:] if centres else []
+            
+        return render_template(
+            'vaccine_admin_dashboard.html',
+            total_vaccines=len(vaccines),
+            total_centres=len(centres),
+            recent_vaccines=recent_vaccines,
+            recent_centres=recent_centres
+        )
 
     else:
         profiles     = Profile.query.filter_by(user_id=current_user.user_id).all()

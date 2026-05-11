@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}Bảng điều khiển quản trị - Cổng tiêm chủng{% endblock %}
+{% block title %}Bảng điều khiển - Quản lý Vắc-xin & Trung tâm{% endblock %}
 
 {% block content %}
 <div class="space-y-6">
@@ -9,8 +9,8 @@
         <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between">
                 <div class="text-white">
-                    <h1 class="text-2xl font-bold">Xin chào, Quản trị viên</h1>
-                    <p class="mt-1 text-blue-100">Quản lý lịch tiêm, cuộc hẹn, và nhiều hơn nữa</p>
+                    <h1 class="text-2xl font-bold">Xin chào, Quản trị viên Vắc-xin</h1>
+                    <p class="mt-1 text-blue-100">Quản lý danh mục vắc-xin, bảng giá và các trung tâm tiêm chủng</p>
                 </div>
                 <div>
                     <a href="{{ url_for('auth.logout') }}"
@@ -23,72 +23,91 @@
     </div>
 
     <!-- Main Content Grid -->
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <!-- Today's Stats -->
-        <div class="bg-white rounded-lg shadow-md overflow-hidden">
-            <div class="px-6 py-4 bg-gray-50 border-b border-gray-200">
-                <h2 class="text-lg font-medium text-gray-900">Cuộc hẹn hôm nay</h2>
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <!-- Total Vaccines -->
+        <div class="bg-white rounded-lg shadow-md overflow-hidden flex items-center p-6">
+            <div class="flex-shrink-0 bg-purple-100 rounded-md p-4">
+                <i class="fas fa-syringe text-purple-600 text-3xl"></i>
             </div>
-            <div class="p-6">
-                <p class="text-2xl font-bold text-blue-600">{{ today_appointments }}</p>
-            </div>
-        </div>
-
-        <div class="bg-white rounded-lg shadow-md overflow-hidden">
-            <div class="px-6 py-4 bg-gray-50 border-b border-gray-200">
-                <h2 class="text-lg font-medium text-gray-900">Vắc-xin có sẵn</h2>
-            </div>
-            <div class="p-6">
-                <p class="text-2xl font-bold text-green-600">{{ available_vaccines }}</p>
+            <div class="ml-6">
+                <h2 class="text-lg font-medium text-gray-500">Tổng số loại Vắc-xin</h2>
+                <p class="text-3xl font-bold text-gray-900 mt-1">{{ total_vaccines }}</p>
             </div>
         </div>
 
-        <div class="bg-white rounded-lg shadow-md overflow-hidden">
-            <div class="px-6 py-4 bg-gray-50 border-b border-gray-200">
-                <h2 class="text-lg font-medium text-gray-900">Phiên đã lên lịch</h2>
+        <!-- Total Centres -->
+        <div class="bg-white rounded-lg shadow-md overflow-hidden flex items-center p-6">
+            <div class="flex-shrink-0 bg-blue-100 rounded-md p-4">
+                <i class="fas fa-hospital text-blue-600 text-3xl"></i>
             </div>
-            <div class="p-6">
-                <p class="text-2xl font-bold text-orange-600">{{ scheduled_sessions }}</p>
+            <div class="ml-6">
+                <h2 class="text-lg font-medium text-gray-500">Trung tâm tiêm chủng</h2>
+                <p class="text-3xl font-bold text-gray-900 mt-1">{{ total_centres }}</p>
             </div>
         </div>
     </div>
 
-    <!-- Schedule Management Section -->
-    <div class="bg-white rounded-lg shadow-md overflow-hidden">
-        <div class="px-6 py-4 bg-gray-50 border-b border-gray-200 flex justify-between items-center">
-            <h2 class="text-lg font-medium text-gray-900">Quản lý lịch trình</h2>
-            <a href="{{ url_for('admin.manage_schedules') }}"
-               class="inline-flex items-center px-3 py-1 border border-transparent rounded-md text-sm font-medium text-blue-600 bg-blue-100 hover:bg-blue-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
-                Tạo lịch trình mới
-            </a>
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <!-- Recent Vaccines Table -->
+        <div class="bg-white rounded-lg shadow-md overflow-hidden">
+            <div class="px-6 py-4 bg-gray-50 border-b border-gray-200 flex justify-between items-center">
+                <h2 class="text-lg font-medium text-gray-900">Vắc-xin mới thêm</h2>
+                <a href="{{ url_for('admin.manage_vaccines') }}" class="text-sm font-medium text-blue-600 hover:text-blue-500">Xem tất cả &rarr;</a>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="min-w-full table-auto">
+                    <thead>
+                        <tr class="bg-white border-b">
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tên Vắc-xin</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Độ tuổi</th>
+                            <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Giá (VNĐ)</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-200">
+                        {% for v in recent_vaccines %}
+                        <tr class="hover:bg-gray-50">
+                            <td class="px-6 py-4 text-sm text-gray-900 font-medium">{{ v.name }}</td>
+                            <td class="px-6 py-4 text-sm text-gray-500">{{ v.min_age }} - {{ v.max_age }} tuổi</td>
+                            <td class="px-6 py-4 text-sm text-gray-900 text-right">{{ "{:,.0f}".format(v.price) }}</td>
+                        </tr>
+                        {% else %}
+                        <tr>
+                            <td colspan="3" class="px-6 py-4 text-sm text-gray-500 text-center">Chưa có vắc-xin nào</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
         </div>
-        <div class="p-6">
-            <table class="min-w-full table-auto">
-                <thead>
-                    <tr class="bg-gray-100">
-                        <th class="px-4 py-2 text-left text-sm font-medium text-gray-500">Thời gian</th>
-                        <th class="px-4 py-2 text-left text-sm font-medium text-gray-500">Vắc-xin</th>
-                        <th class="px-4 py-2 text-left text-sm font-medium text-gray-500">Cuộc hẹn</th>
-                        <th class="px-4 py-2 text-left text-sm font-medium text-gray-500">Trạng thái</th>
-                    </tr>
-                </thead>
-                <tbody class="divide-y divide-gray-200">
-                    {% for schedule in today_schedules %}
-                    <tr>
-                        <td class="px-4 py-2 text-sm text-gray-900">{{ schedule.time_slot }}</td>
-                        <td class="px-4 py-2 text-sm text-gray-900">{{ schedule.vaccine_name }}</td>
-                        <td class="px-4 py-2 text-sm text-gray-900">{{ schedule.appointment_count }}/10</td>
-                        <td class="px-4 py-2 text-sm">
-                            {% if schedule.appointment_count >= 10 %}
-                            <span class="text-red-600">Đã đầy</span>
-                            {% else %}
-                            <span class="text-green-600">Còn chỗ</span>
-                            {% endif %}
-                        </td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+
+        <!-- Recent Centres Table -->
+        <div class="bg-white rounded-lg shadow-md overflow-hidden">
+            <div class="px-6 py-4 bg-gray-50 border-b border-gray-200 flex justify-between items-center">
+                <h2 class="text-lg font-medium text-gray-900">Trung tâm tiêm chủng</h2>
+                <a href="{{ url_for('admin.manage_centres') }}" class="text-sm font-medium text-blue-600 hover:text-blue-500">Xem tất cả &rarr;</a>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="min-w-full table-auto">
+                    <thead>
+                        <tr class="bg-white border-b">
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tên Trung tâm</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Quận/Huyện</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-200">
+                        {% for c in recent_centres %}
+                        <tr class="hover:bg-gray-50">
+                            <td class="px-6 py-4 text-sm text-gray-900 font-medium">{{ c.name }}</td>
+                            <td class="px-6 py-4 text-sm text-gray-500">{{ c.district }}</td>
+                        </tr>
+                        {% else %}
+                        <tr>
+                            <td colspan="2" class="px-6 py-4 text-sm text-gray-500 text-center">Chưa có trung tâm nào</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 
@@ -98,13 +117,13 @@
             <h2 class="text-lg font-medium text-gray-900">Thao tác nhanh</h2>
         </div>
         <div class="p-6 grid grid-cols-1 md:grid-cols-2 gap-4">
-            <a href="{{ url_for('admin.manage_schedules') }}"
-               class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
-                Xem tất cả lịch trình
+            <a href="{{ url_for('admin.manage_vaccines') }}"
+               class="inline-flex items-center justify-center px-4 py-3 border border-transparent shadow-sm text-sm font-medium rounded-md text-blue-700 bg-blue-100 hover:bg-blue-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors">
+                <i class="fas fa-plus-circle mr-2"></i> Thêm Vắc-xin mới
             </a>
-            <a href="#"
-               class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
-                Tạo báo cáo
+            <a href="{{ url_for('admin.manage_centres') }}"
+               class="inline-flex items-center justify-center px-4 py-3 border border-transparent shadow-sm text-sm font-medium rounded-md text-blue-700 bg-blue-100 hover:bg-blue-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors">
+                <i class="fas fa-hospital-alt mr-2"></i> Thêm Trung tâm mới
             </a>
         </div>
     </div>
